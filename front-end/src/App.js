@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 
 function App() {
@@ -11,9 +7,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/">
-          {' '}
           <HomePage />
-          {' '}
         </Route>
       </Switch>
     </Router>
