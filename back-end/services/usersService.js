@@ -23,7 +23,22 @@ const userLogin = async (email, pass) => {
 };
 
 const registerUser = async (name, email, password, role) => {
-  await usersModel.registerUser(name, email, password, role);
+  try {
+    await usersModel.registerUser(name, email, password, role);
+
+    return userLogin(email, password);
+  } catch (err) {
+    const { info } = err;
+    if (info.code === 1062) {
+      return {
+        err: { code: 'invalid_entries', message: 'E-mail already registered' },
+      };
+    }
+
+    return {
+      err: { code: info.code, message: info.msg },
+    };
+  }
 };
 
 module.exports = {
