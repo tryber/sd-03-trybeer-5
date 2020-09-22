@@ -22,6 +22,11 @@ const userLogin = async (email, pass) => {
   };
 };
 
+const registerUser = async (name, email, password, role) => {
+  await usersModel.registerUser(name, email, password, role);
+};
+
 module.exports = {
   userLogin,
+  registerUser,
 };
