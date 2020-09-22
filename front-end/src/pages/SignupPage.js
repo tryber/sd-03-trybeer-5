@@ -46,48 +46,57 @@ function SignupPage() {
   return (
     <div className="SignupPage container">
       <h1 className="text-center">Trybeer - Registro de novo Usuário</h1>
-      <div className="form">
-        <form method="POST" onSubmit={ handleSubmit }>
+      <div>
+        <form className="form" method="POST" onSubmit={ handleSubmit }>
           <div className="form-group">
-            <input
-              data-testid="signup-name"
-              className="form-control"
-              minLength="12"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Nome"
-              onChange={ (e) => setName(e.target.value) }
-              value={ name }
-              required
-            />
+            <label htmlFor="name">
+              Nome
+              <input
+                data-testid="signup-name"
+                className="form-control"
+                minLength="12"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Nome"
+                onChange={ (e) => setName(e.target.value) }
+                value={ name }
+                required
+              />
+            </label>
           </div>
           <div className="form-group">
-            <input
-              data-testid="signup-email"
-              className="form-control"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="E-mail válido"
-              onChange={ (e) => setEmail(e.target.value) }
-              value={ email }
-              required
-            />
+            <label htmlFor="email">
+              Email
+              <input
+                data-testid="signup-email"
+                className="form-control"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="E-mail válido"
+                onChange={ (e) => setEmail(e.target.value) }
+                value={ email }
+                required
+              />
+            </label>
           </div>
           <div className="form-group">
-            <input
-              data-testid="signup-password"
-              className="form-control"
-              type="password"
-              name="password"
-              minLength="6"
-              id="password"
-              placeholder="Escolha uma senha"
-              onChange={ (e) => setPassword(e.target.value) }
-              value={ password }
-              required
-            />
+            <label htmlFor="password">
+              Senha
+              <input
+                data-testid="signup-password"
+                className="form-control"
+                type="password"
+                name="password"
+                minLength="6"
+                id="password"
+                placeholder="Escolha uma senha"
+                onChange={ (e) => setPassword(e.target.value) }
+                value={ password }
+                required
+              />
+            </label>
           </div>
           <div className="form-check">
             <label className="form-check-label" htmlFor="seller">
