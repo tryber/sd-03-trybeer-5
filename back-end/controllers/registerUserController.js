@@ -1,7 +1,7 @@
 const rescue = require('express-rescue');
 const { usersService } = require('../services');
 
-const registerController = rescue(async (req, res) => {
+const registerUserController = rescue(async (req, res) => {
   const { name, email, password, seller } = req.body;
   const role = seller ? 'administrator' : 'client';
 
@@ -14,4 +14,4 @@ const registerController = rescue(async (req, res) => {
   return res.status(200).json(user);
 });
 
-module.exports = registerController;
+module.exports = registerUserController;

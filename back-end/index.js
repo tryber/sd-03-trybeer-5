@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const { loginController, registerController } = require('./controllers');
+const { loginController, registerUserController } = require('./controllers');
 
 const PORT = process.env.API_PORT;
 
@@ -11,6 +11,6 @@ app.use(bodyParser.json());
 
 app.post('/login', loginController);
 
-app.post('/register', registerController);
+app.post('/register', registerUserController);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
