@@ -1,11 +1,20 @@
+ 
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import HomePage from './pages/HomePage';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>O app de cervejas mais top. Trybeer</h1>
-    </div>
-  );
+ return(
+   <Router>
+     <Switch>
+        <Route path="/"> <HomePage/> </Route>
+     </Switch>
+   </Router>
+ );
 }
 
 export default App;
