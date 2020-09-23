@@ -8,6 +8,8 @@ const {
   registerUserController,
   updateClientNameController,
 } = require('./controllers');
+const { validateJWT } = require('./middlewares');
+const { connection } = require('./models');
 
 const PORT = process.env.API_PORT;
 
@@ -21,6 +23,8 @@ app.post('/login', loginController);
 
 app.post('/register', registerUserController);
 
-app.post('/update-client-name', updateClientNameController);
+app.post('/update-client-name', validateJWT, updateClientNameController);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
+
+connection().then(() => console.log('Conectado ao banco'));
