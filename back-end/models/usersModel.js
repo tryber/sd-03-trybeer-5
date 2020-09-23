@@ -20,6 +20,13 @@ const getUserByEmail = async (email) => connection()
     };
   });
 
+const registerUser = async (name, email, password, role) => connection().then((db) => db
+  .getTable('users')
+  .insert(['name', 'email', 'password', 'role'])
+  .values(name, email, password, role)
+  .execute());
+
 module.exports = {
   getUserByEmail,
+  registerUser,
 };
