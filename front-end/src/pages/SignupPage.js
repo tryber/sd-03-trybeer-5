@@ -116,7 +116,7 @@ function SignupPage() {
           </div>
           <div className="form-group">
             <label htmlFor="password">
-              Senha
+              Password
               <input
                 data-testid="signup-password"
                 className="form-control"
@@ -141,10 +141,10 @@ function SignupPage() {
                 onChange={ (e) => setSeller(e.target.checked) }
                 value={ seller }
               />
-              Quero vender
+              Quero Vender
             </label>
           </div>
-          <input type="submit" value="Registrar" disabled={ !ableToSubmit } data-testid="signup-btn" className="btn btn-primary" />
+          <input type="submit" value="Cadastrar" disabled={ !ableToSubmit } data-testid="signup-btn" className="btn btn-primary" />
         </form>
       </div>
       <p className="text-muted">{error}</p>
