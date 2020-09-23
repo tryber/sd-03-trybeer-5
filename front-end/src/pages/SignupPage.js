@@ -1,47 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 function SignupPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState({ text: '', able: false });
+  const [email, setEmail] = useState({ text: '', able: false });
+  const [password, setPassword] = useState({ text: '', able: false });
   const [seller, setSeller] = useState(false);
+  const [ableToSubmit, setAbleToSubmit] = useState(false);
+  const [error, setError] = useState('');
+  const [redirectTo, setRedirectTo] = useState('/');
 
-  function validateName(currentName) {
+  useEffect(() => {
+    if (name.able && email.able && password.able) {
+      setAbleToSubmit(true);
+    } else {
+      setAbleToSubmit(false);
+    }
+  }, [name.able, email.able, password.able]);
+
+  function handleNameChange(currentName) {
     // Fonte do regex : https://stackoverflow.com/questions/12778083/regex-with-space-and-letters-only
     const regex = new RegExp(/^[a-zA-Z\s]+$/);
-    const maxLength = 12;
-    if (!regex.test(currentName) || currentName.length < maxLength) {
-      return false;
+    const minLength = 12;
+    let able = false;
+    if (regex.test(currentName) && currentName.length >= minLength) {
+      able = true;
     }
-    return true;
+    setName({
+      text: currentName,
+      able,
+    });
   }
 
-  function validateEmail(currentEmail) {
+  function handleEmailChange(currentEmail) {
     // Fonte do regex : https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     const regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-    if (!regex.test(currentEmail)) {
-      return false;
+    let able = false;
+    if (regex.test(currentEmail)) {
+      able = true;
     }
-    return true;
+    setEmail({
+      text: currentEmail,
+      able,
+    });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (validateName(name) && validateEmail(email)) {
-      fetch('https://localhost:3001/register', {
-        method: 'POST',
-        body: {
-          name,
-          email,
-          password,
-          seller,
-        },
-      }).then((response) => {
-        console.log(response.json());
-        return response.json();
-      });
+  function handlePasswordChange(currentPassword) {
+    let able = false;
+    const minLength = 6;
+    if (currentPassword.length >= minLength) {
+      able = true;
     }
+    setPassword({
+      text: currentPassword,
+      able,
+    });
   }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await fetch('http://localhost:3001/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name.text,
+        email: email.text,
+        password: password.text,
+        seller,
+      }),
+    });
+    const user = await response.json();
+    const page = user.role === 'administrator' ? '/admin/orders' : '/products';
+    if (user.err) setError(user.err.message);
+    else setRedirectTo(page);
+  }
+
+  if (redirectTo !== '/') return <Redirect to={ redirectTo } />;
 
   return (
     <div className="SignupPage container">
@@ -54,13 +88,12 @@ function SignupPage() {
               <input
                 data-testid="signup-name"
                 className="form-control"
-                minLength="12"
                 type="text"
                 name="name"
                 id="name"
                 placeholder="Nome"
-                onChange={ (e) => setName(e.target.value) }
-                value={ name }
+                onChange={ (e) => handleNameChange(e.target.value) }
+                value={ name.text }
                 required
               />
             </label>
@@ -75,8 +108,8 @@ function SignupPage() {
                 name="email"
                 id="email"
                 placeholder="E-mail válido"
-                onChange={ (e) => setEmail(e.target.value) }
-                value={ email }
+                onChange={ (e) => handleEmailChange(e.target.value) }
+                value={ email.text }
                 required
               />
             </label>
@@ -89,11 +122,10 @@ function SignupPage() {
                 className="form-control"
                 type="password"
                 name="password"
-                minLength="6"
                 id="password"
                 placeholder="Escolha uma senha"
-                onChange={ (e) => setPassword(e.target.value) }
-                value={ password }
+                onChange={ (e) => handlePasswordChange(e.target.value) }
+                value={ password.text }
                 required
               />
             </label>
@@ -112,9 +144,10 @@ function SignupPage() {
               Quero vender
             </label>
           </div>
-          <input type="submit" value="Registrar" data-testid="signup-btn" className="btn btn-primary" />
+          <input type="submit" value="Registrar" disabled={ !ableToSubmit } data-testid="signup-btn" className="btn btn-primary" />
         </form>
       </div>
+      <p className="text-muted">{error}</p>
     </div>
   );
 }
