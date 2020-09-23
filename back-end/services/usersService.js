@@ -1,5 +1,5 @@
-const { generateJWT } = require('../middlewares');
 const { usersModel } = require('../models');
+const { generateJWT } = require('../middlewares');
 
 const userLogin = async (email, pass) => {
   const user = await usersModel.getUserByEmail(email);
