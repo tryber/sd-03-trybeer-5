@@ -32,7 +32,7 @@ const registerUser = async (name, email, password, role) => {
 
     if (info.code === 1062) {
       return {
-        err: { code: 'invalid_entries', message: 'E-mail already registered' },
+        err: { code: 'invalid_entries', message: 'E-mail already in database.' },
       };
     }
 
