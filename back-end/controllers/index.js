@@ -1,8 +1,10 @@
-const usersController = require('./usersController');
-const clientsController = require('./clientsController');
+const { userLogin, registerUser } = require('./usersController');
+const { updateClientName } = require('./clientsController');
+const { getAllProducts } = require('./productsController');
 
 module.exports = {
-  loginController: usersController.userLogin,
-  registerUserController: usersController.registerUser,
-  updateClientNameController: clientsController.updateClientName,
+  userLogin,
+  registerUser,
+  updateClientName,
+  getAllProducts,
 };
