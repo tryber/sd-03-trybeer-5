@@ -81,7 +81,7 @@ function SignupPage() {
     <div className="SignupPage container">
       <h1 className="text-center">Trybeer - Registro de novo Usuário</h1>
       <div>
-        <form className="form" method="POST" onSubmit={ handleSubmit }>
+        <form method="POST" onSubmit={ handleSubmit }>
           <div className="form-group">
             <label htmlFor="name">
               Nome
