@@ -16,6 +16,8 @@ export default function Login() {
     setIsValid(validate(values));
   }, [values]);
 
+  
+
   const handleSignInSubmit = async (e) => {
     const { email, password } = values;
     e.preventDefault();
@@ -28,6 +30,10 @@ export default function Login() {
     });
 
     const userInfo = await rawResponse.json();
+    if (userInfo.token) {
+      localStorage.setItem('user', JSON.stringify(userInfo));
+    }
+
     if (userInfo.role === 'administrator') {
       window.location.href = '/admin/orders';
     };
