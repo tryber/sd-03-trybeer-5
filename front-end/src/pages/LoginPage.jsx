@@ -4,6 +4,7 @@ import useForm from '../hooks/useForm';
 export default function Login() {
   const [isValid, setIsValid] = useState(true);
   const { values, handleChange } = useForm({ email: '', password: '' });
+
   const validate = (loginInfo) => {
     const minPasswd = 6;
     const password = loginInfo.password.length >= minPasswd;
@@ -11,14 +12,16 @@ export default function Login() {
     const email = expression.test(String(loginInfo.email).toLowerCase());
     return password === email;
   };
-  
+
   useEffect(() => {
     setIsValid(validate(values));
   }, [values]);
-  
+
   const handleSignInSubmit = async (e) => {
     const { email, password } = values;
+
     e.preventDefault();
+
     const rawResponse = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
@@ -26,6 +29,7 @@ export default function Login() {
       },
       body: JSON.stringify({ email, password }),
     });
+
     const saveToLocalStorage = (info) => {
       localStorage.setItem('user', JSON.stringify(info));
     };
@@ -42,10 +46,12 @@ export default function Login() {
       window.location.href = '/products/';
     }
   };
+
   const handleNoAccountSubmit = (e) => {
     e.preventDefault();
     window.location.href = '/register';
   };
+
   return (
     <form>
       <div className="mb-3">
@@ -53,15 +59,15 @@ export default function Login() {
         <input
           type="email"
           data-testid="email-input"
-          value={ values.email }
+          value={values.email}
           className="form-control"
           id="email"
           name="email"
-          onChange={ (event) => handleChange(event) }
+          onChange={(event) => handleChange(event)}
         />
       </div>
       <div className="mb-3">
-        <label value={ values.password } className="form-label" name="password">
+        <label value={values.password} className="form-label" name="password">
           Password:
         </label>
         <input
@@ -70,7 +76,7 @@ export default function Login() {
           className="form-control"
           id="password"
           name="password"
-          onChange={ (event) => handleChange(event) }
+          onChange={(event) => handleChange(event)}
         />
       </div>
       <div className="btn-group" role="group">
@@ -79,15 +85,15 @@ export default function Login() {
             data-testid="signin-btn"
             type="submit"
             className="btn btn-primary"
-            disabled={ !isValid }
-            onClick={ (event) => handleSignInSubmit(event) }
+            disabled={!isValid}
+            onClick={(event) => handleSignInSubmit(event)}
           >
             ENTRAR
           </button>
         </div>
         <div className="mb-3">
           <button
-            onClick={ (event) => handleNoAccountSubmit(event) }
+            onClick={(event) => handleNoAccountSubmit(event)}
             type="submit"
             data-testid="no-account-btn"
             className="btn btn-primary"
