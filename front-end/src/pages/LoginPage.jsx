@@ -11,9 +11,11 @@ export default function Login() {
     const email = expression.test(String(loginInfo.email).toLowerCase());
     return password === email;
   };
+  
   useEffect(() => {
     setIsValid(validate(values));
   }, [values]);
+
   const handleSignInSubmit = async (e) => {
     const { email, password } = values;
     e.preventDefault();
@@ -24,14 +26,15 @@ export default function Login() {
       },
       body: JSON.stringify({ email, password }),
     });
+
     const userInfo = await rawResponse.json();
     if (userInfo.role === 'administrator') {
       window.location.href = '/admin/orders';
-    }
+    };
 
     if (userInfo.role === 'client') {
       window.location.href = '/products';
-    }
+    };
   };
   const handleNoAccountSubmit = (e) => {
     e.preventDefault();
