@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../hooks/useForm';
+import { Link, Redirect } from 'react-router-dom';
 
 export default function Login() {
   const [isValid, setIsValid] = useState(true);
@@ -15,9 +16,7 @@ export default function Login() {
   useEffect(() => {
     setIsValid(validate(values));
   }, [values]);
-
   
-
   const handleSignInSubmit = async (e) => {
     const { email, password } = values;
     e.preventDefault();
@@ -35,11 +34,11 @@ export default function Login() {
     }
 
     if (userInfo.role === 'administrator') {
-      window.location.href = '/admin/orders';
+      return <Redirect to='/admin/orders' />;
     };
 
     if (userInfo.role === 'client') {
-      window.location.href = '/products';
+      return <Redirect to='/products' />;
     };
   };
   const handleNoAccountSubmit = (e) => {
