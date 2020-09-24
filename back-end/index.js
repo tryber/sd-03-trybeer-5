@@ -11,7 +11,7 @@ const {
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
 
-const PORT = process.env.API_PORT;
+const PORT = process.env.API_PORT || 3001;
 
 const app = express();
 app.use(cors());
