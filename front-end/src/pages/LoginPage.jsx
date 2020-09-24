@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../hooks/useForm';
-import { Link, Redirect } from 'react-router-dom';
 
 export default function Login() {
   const [isValid, setIsValid] = useState(true);
@@ -40,7 +39,7 @@ export default function Login() {
 
     if (userInfo.role === 'client') {
       saveToLocalStorage(userInfo);
-      window.location.href = '/products';
+      window.location.href = '/products/';
     }
   };
   const handleNoAccountSubmit = (e) => {

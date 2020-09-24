@@ -18,6 +18,15 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
+        <Route exact path="/admin/orders">
+          <HomePage />
+        </Route>
+        <Route exact path="/products">
+          <HomePage />
+        </Route>
+        <Route exact path="/register">
+          <HomePage />
+        </Route>
       </Switch>
     </Router>
   );
