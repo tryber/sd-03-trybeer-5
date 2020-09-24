@@ -3,6 +3,7 @@ const { usersService } = require('../services');
 
 const registerUserController = rescue(async (req, res) => {
   const { name, email, password, seller } = req.body;
+
   const role = seller ? 'administrator' : 'client';
 
   const user = await usersService.registerUser(name, email, password, role);
