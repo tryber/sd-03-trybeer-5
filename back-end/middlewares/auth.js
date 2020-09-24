@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const usersModel = require('../models');
 require('dotenv').config();
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'trybeer05';
 
 const jwtConfig = {
   expiresIn: '2d',

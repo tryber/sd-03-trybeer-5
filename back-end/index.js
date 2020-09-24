@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const PORT = process.env.API_PORT || 3001;
+
 const {
   userLogin,
   registerUser,
@@ -12,7 +14,7 @@ const {
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
 
-const PORT = process.env.API_PORT;
+const PORT = process.env.API_PORT || 3001;
 
 const app = express();
 
