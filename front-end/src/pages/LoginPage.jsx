@@ -27,19 +27,21 @@ export default function Login() {
       },
       body: JSON.stringify({ email, password }),
     });
+    const saveToLocalStorage = (info) => {
+      localStorage.setItem('user', JSON.stringify(info));
+    };
 
     const userInfo = await rawResponse.json();
-    if (userInfo.token) {
-      localStorage.setItem('user', JSON.stringify(userInfo));
-    }
 
     if (userInfo.role === 'administrator') {
-      return <Redirect to='/admin/orders' />;
-    };
+      saveToLocalStorage(userInfo);
+      window.location.href = '/admin/orders';
+    }
 
     if (userInfo.role === 'client') {
-      return <Redirect to='/products' />;
-    };
+      saveToLocalStorage(userInfo);
+      window.location.href = '/products';
+    }
   };
   const handleNoAccountSubmit = (e) => {
     e.preventDefault();
