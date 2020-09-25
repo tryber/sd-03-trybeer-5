@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import { saveToLocalStorage } from '../utils/saveToLocalStorage';
+import { register } from '../services/userService';
 
 function SignupPage() {
   const [name, setName] = useState({ text: '', able: false });
@@ -59,17 +61,9 @@ function SignupPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await fetch('http://localhost:3001/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: name.text,
-        email: email.text,
-        password: password.text,
-        seller,
-      }),
-    });
-    const user = await response.json();
+    const response = register(name, email, password, seller);
+    const user = await response;
+    saveToLocalStorage(user);
     const page = user.role === 'administrator' ? '/admin/orders' : '/products';
     if (user.err) setError(user.err.message);
     else setRedirectTo(page);
