@@ -18,7 +18,7 @@ const app = express();
 
 app.use(cors());
 
-app.use('/images', express.static(process.cwd() + '/images'));
+app.use('/images', express.static(`${process.cwd()}/images`));
 
 app.use(bodyParser.json());
 
@@ -28,7 +28,7 @@ app.post('/register', registerUser);
 
 app.post('/update-client-name', validateJWT, updateClientName);
 
-app.get('/products',validateJWT, getAllProducts);
+app.get('/products', validateJWT, getAllProducts);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
