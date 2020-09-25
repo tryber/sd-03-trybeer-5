@@ -62,7 +62,7 @@ function SignupPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = register(name, email, password, seller);
-    const user = await response
+    const user = await response;
     saveToLocalStorage(user);
     const page = user.role === 'administrator' ? '/admin/orders' : '/products';
     if (user.err) setError(user.err.message);
