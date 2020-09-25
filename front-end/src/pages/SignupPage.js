@@ -78,9 +78,9 @@ function SignupPage() {
   if (redirectTo !== '/') return <Redirect to={ redirectTo } />;
 
   return (
-    <div className="SignupPage container">
+    <div className="SignupPage">
       <h1 className="text-center">Trybeer - Registro de novo Usuário</h1>
-      <div>
+      <div className="d-flex justify-content-center align-items-center">
         <form method="POST" onSubmit={ handleSubmit }>
           <div className="form-group">
             <label htmlFor="name">
