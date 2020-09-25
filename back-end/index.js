@@ -28,7 +28,7 @@ app.post('/register', registerUser);
 
 app.post('/update-client-name', validateJWT, updateClientName);
 
-app.get('/products', getAllProducts);
+app.get('/products',validateJWT, getAllProducts);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 

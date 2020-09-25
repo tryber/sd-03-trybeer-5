@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const usersModel = require('../models');
+const { usersModel } = require('../models');
 require('dotenv').config();
 
 const secret = process.env.JWT_SECRET || 'trybeer05';
@@ -25,12 +25,7 @@ const validateJWT = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, secret);
-
-    const {
-      data: { email },
-    } = decoded;
-
-    const user = await usersModel.getUserByEmail(email);
+    const user = await usersModel.getUserByEmail(decoded.data.email);
 
     if (!user) {
       return res
@@ -38,9 +33,8 @@ const validateJWT = async (req, res, next) => {
         .json({ err: { code: 'invalid_toke', message: 'Invalid token.' } });
     }
 
-    const { password, ...userData } = user;
-
-    req.user = userData;
+    // const { password, ...userData } = user;
+    // req.user = userData;
 
     return next();
   } catch (err) {
