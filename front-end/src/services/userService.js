@@ -1,19 +1,19 @@
 const login = async (values) => {
   const { email, password } = values;
-  const response = await fetch("http://localhost:3001/login", {
-    method: "POST",
+  const response = await fetch('http://localhost:3001/login', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
   });
-  return await response.json();
+  return response.json();
 };
 
 const register = async (name, email, password, seller) => {
-  const response = await fetch("http://localhost:3001/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch('http://localhost:3001/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: name.text,
       email: email.text,
@@ -21,6 +21,6 @@ const register = async (name, email, password, seller) => {
       seller,
     }),
   });
-  return await response.json();
+  return response.json();
 };
 module.exports = { login, register };
