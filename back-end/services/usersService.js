@@ -13,7 +13,6 @@ const userLogin = async (email, pass) => {
   const { password, ...userData } = user;
 
   const { token } = generateJWT(userData);
-
   return {
     name: user.name,
     email: user.email,

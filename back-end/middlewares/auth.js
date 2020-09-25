@@ -25,22 +25,16 @@ const validateJWT = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, secret);
+    const user = await usersModel.getUserByEmail(decoded.data.email);
 
-    const {
-      data: { email },
-    } = decoded;
-
-    const user = await usersModel.getUserByEmail(email);
-    console.log(user);
     if (!user) {
       return res
         .status(401)
         .json({ err: { code: 'invalid_toke', message: 'Invalid token.' } });
     }
 
-    const { password, ...userData } = user;
-
-    req.user = userData;
+    // const { password, ...userData } = user;
+    // req.user = userData;
 
     return next();
   } catch (err) {

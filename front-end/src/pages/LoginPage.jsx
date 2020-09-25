@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useForm from '../hooks/useForm';
+import { saveToLocalStorage } from '../utils/saveToLocalStorage';
+import { login } from '../services/userService';
 
 export default function Login() {
   const [isValid, setIsValid] = useState(true);
@@ -18,23 +20,10 @@ export default function Login() {
   }, [values]);
 
   const handleSignInSubmit = async (e) => {
-    const { email, password } = values;
-
     e.preventDefault();
+    const rawResponse = login(values);
 
-    const rawResponse = await fetch('http://localhost:3001/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const saveToLocalStorage = (info) => {
-      localStorage.setItem('user', JSON.stringify(info));
-    };
-
-    const userInfo = await rawResponse.json();
+    const userInfo = await rawResponse;
 
     if (userInfo.role === 'administrator') {
       saveToLocalStorage(userInfo);
