@@ -1,11 +1,11 @@
 import React from 'react';
 import ProductCard from './ProductCard';
 
-function ListProductsCards(products) {
+function ListProductsCards({ products }) {
   return (
-    <div>
+    <div className="cards-list">
       {products.map((product, index) => (
-        <ProductCard product={ product } index={ index } key={ product.id } />
+        <ProductCard product={product} index={index} key={product.id} />
       ))}
     </div>
   );

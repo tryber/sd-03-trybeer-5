@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const usersModel = require('../models');
+const { usersModel } = require('../models');
 require('dotenv').config();
 
 const secret = process.env.JWT_SECRET || 'trybeer05';
@@ -31,7 +31,7 @@ const validateJWT = async (req, res, next) => {
     } = decoded;
 
     const user = await usersModel.getUserByEmail(email);
-
+    console.log(user);
     if (!user) {
       return res
         .status(401)

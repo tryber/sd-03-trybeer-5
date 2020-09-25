@@ -1,0 +1,23 @@
+.cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.product-card {
+  margin: 20px;
+  width: 18rem;
+}
+
+.img-card {
+  border: 1px solid black;
+  height: 12rem;
+}
+
+.product-qtd {
+  margin: 0 10px;
+}
+
+.cart-button {
+  text-align: center;
+}
