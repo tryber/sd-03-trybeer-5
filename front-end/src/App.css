@@ -126,9 +126,16 @@
 
 /* Products Page */
 
+.product-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .cards-list {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 4rem;
 }
 
 .product-card {
@@ -144,6 +151,14 @@
   margin: 0 10px;
 }
 
+.cart-content {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .cart-button {
-  text-align: center;
+  width: 25rem;
+  margin: 20px 0;
 }

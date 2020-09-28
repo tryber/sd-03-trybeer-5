@@ -2,7 +2,7 @@ import React from 'react';
 
 function MenuTop() {
   return (
-    <div classNameName="MenuTop">
+    <div className="MenuTop">
       <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
           <button
@@ -39,7 +39,6 @@ function MenuTop() {
           </ul>
         </div>
       </nav>
-
     </div>
   );
 }

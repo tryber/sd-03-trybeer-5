@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import formatPrice from '../utils/formatPrice';
 
-function ProductCard({ product, index }) {
+function ProductCard({ product, index, totalPrice }) {
   const { name, image, price } = product;
   const [amount, setAmount] = useState(0);
 
@@ -38,6 +39,7 @@ function ProductCard({ product, index }) {
   useEffect(() => {
     const productToAdd = { ...product, amount };
     addToCart(productToAdd);
+    totalPrice();
   }, [amount]);
 
   return (
@@ -55,7 +57,7 @@ function ProductCard({ product, index }) {
         <p
           className="card-text"
           data-testid={`${index}-product-price`}
-        >{`R$ ${price.toFixed(2)}`}</p>
+        >{`R$ ${formatPrice(price)}`}</p>
         <button
           className="btn btn-primary"
           data-testid={`${index}-product-plus`}
@@ -75,6 +77,7 @@ function ProductCard({ product, index }) {
           data-testid={`${index}-product-minus`}
           type="button"
           onClick={(event) => updateProductAmount(event)}
+          disabled={amount === 0}
         >
           -
         </button>
