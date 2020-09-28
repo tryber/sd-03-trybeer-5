@@ -13,7 +13,6 @@ function App() {
     <Router>
       <Switch>
         <Route path="/register">
-          <MenuTop />
           <SignupPage />
         </Route>
         <Route path="/products">
@@ -25,11 +24,9 @@ function App() {
           <AdminOrders />
         </Route>
         <Route exact path="/login">
-          <MenuTop />
           <LoginPage />
         </Route>
         <Route exact path="/">
-          <MenuTop />
           <LoginPage />
         </Route>
       </Switch>

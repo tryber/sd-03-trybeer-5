@@ -129,7 +129,6 @@
 .cards-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
 }
 
 .product-card {
@@ -138,8 +137,7 @@
 }
 
 .img-card {
-  border: 1px solid black;
-  height: 12rem;
+  max-height: 12rem;
 }
 
 .product-qtd {

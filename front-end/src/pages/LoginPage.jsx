@@ -42,55 +42,64 @@ export default function Login() {
   };
 
   return (
-    <form>
-      <div className="mb-3">
-        <label className="form-label">Email:</label>
-        <input
-          type="email"
-          data-testid="email-input"
-          value={values.email}
-          className="form-control"
-          id="email"
-          name="email"
-          onChange={(event) => handleChange(event)}
-        />
+    <div className="card">
+      <h1 className="text-center">Trybeer - Login</h1>
+      <div className="d-flex justify-content-center align-items-center">
+        <form>
+          <div className="mb-3">
+            <label className="form-label">Email:</label>
+            <input
+              type="email"
+              data-testid="email-input"
+              value={values.email}
+              className="form-control"
+              id="email"
+              name="email"
+              onChange={(event) => handleChange(event)}
+            />
+          </div>
+          <div className="mb-3">
+            <label
+              value={values.password}
+              className="form-label"
+              name="password"
+            >
+              Password:
+            </label>
+            <input
+              data-testid="password-input"
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              onChange={(event) => handleChange(event)}
+            />
+          </div>
+          <div className="btn-group" role="group">
+            <div className="mb-3 mr-2">
+              <button
+                data-testid="signin-btn"
+                type="submit"
+                className="btn btn-primary"
+                disabled={!isValid}
+                onClick={(event) => handleSignInSubmit(event)}
+              >
+                ENTRAR
+              </button>
+            </div>
+            <div className="mb-3">
+              <button
+                onClick={(event) => handleNoAccountSubmit(event)}
+                type="submit"
+                data-testid="no-account-btn"
+                className="btn btn-primary"
+              >
+                Ainda não tenho conta
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div className="mb-3">
-        <label value={values.password} className="form-label" name="password">
-          Password:
-        </label>
-        <input
-          data-testid="password-input"
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          onChange={(event) => handleChange(event)}
-        />
-      </div>
-      <div className="btn-group" role="group">
-        <div className="mb-3 mr-2">
-          <button
-            data-testid="signin-btn"
-            type="submit"
-            className="btn btn-primary"
-            disabled={!isValid}
-            onClick={(event) => handleSignInSubmit(event)}
-          >
-            ENTRAR
-          </button>
-        </div>
-        <div className="mb-3">
-          <button
-            onClick={(event) => handleNoAccountSubmit(event)}
-            type="submit"
-            data-testid="no-account-btn"
-            className="btn btn-primary"
-          >
-            Ainda não tenho conta
-          </button>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 }
