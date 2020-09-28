@@ -9,8 +9,10 @@ import {
 import SignupPage from './pages/SignupPage';
 import Products from './pages/Products';
 import AdminOrders from './pages/AdminOrders';
+import AdminProfile from './pages/AdminProfile';
 import LoginPage from './pages/LoginPage';
 import MenuTop from './components/MenuTop';
+import AdminMenuSideBar from './components/AdminMenuSideBar';
 
 function App() {
   return (
@@ -25,8 +27,12 @@ function App() {
           <Products />
         </Route>
         <Route path="/admin/orders">
-          <MenuTop />
+          <AdminMenuSideBar />
           <AdminOrders />
+        </Route>
+        <Route path="/admin/profile">
+          <AdminMenuSideBar />
+          <AdminProfile />
         </Route>
         <Route exact path="/login">
           <MenuTop />
