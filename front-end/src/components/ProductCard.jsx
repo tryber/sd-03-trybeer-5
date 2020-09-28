@@ -11,22 +11,10 @@ function ProductCard({ product, index, getTotalPrice }) {
 
     if (!cart || cart.length === 0) return null;
 
-    cart.forEach(({ id, amount }) =>
-      id === product.id ? setAmount(amount) : null
+    cart.forEach(({ id, amount: qnt }) =>
+      id === product.id ? setAmount(qnt) : null
     );
   };
-
-  // const onButtonClick = (e) => {
-  //   if (e.target.innerText === '+') {
-  //     updateProductAmount(e);
-  //     const productToAdd = { ...product, amount };
-  //     return onPlusClick(productToAdd);
-  //   } else {
-  //     updateProductAmount(e);
-  //     const productToAdd = { ...product, amount };
-  //     return onMinusClick(productToAdd);
-  //   }
-  // };
 
   const updateProductAmount = (e) => {
     const value = e.target.innerText;
@@ -37,38 +25,6 @@ function ProductCard({ product, index, getTotalPrice }) {
 
     return null;
   };
-
-  // const onPlusClick = (productToAdd) => {
-  //   console.log(amount);
-  //   const cart = JSON.parse(localStorage.getItem('cart'));
-
-  //   if (!cart && productToAdd.amount === 0) {
-  //     return null;
-  //   } else if (!cart && productToAdd.amount > 0) {
-  //     localStorage.setItem('cart', JSON.stringify([productToAdd]));
-  //   } else {
-  //     const newCart = cart.filter(({ id }) => id !== productToAdd.id);
-
-  //     localStorage.setItem('cart', JSON.stringify([...newCart, productToAdd]));
-  //   }
-  //   return getTotalPrice();
-  // };
-
-  // const onMinusClick = (productToAdd) => {
-  //   console.log(amount);
-  //   const cart = JSON.parse(localStorage.getItem('cart'));
-
-  //   if (cart && productToAdd.amount === 0) {
-  //     const newCart = cart.filter(({ id }) => id !== productToAdd.id);
-
-  //     localStorage.setItem('cart', JSON.stringify([...newCart]));
-  //   } else {
-  //     const newCart = cart.filter(({ id }) => id !== productToAdd.id);
-
-  //     localStorage.setItem('cart', JSON.stringify([...newCart, productToAdd]));
-  //   }
-  //   return getTotalPrice();
-  // };
 
   const updateCart = (productToAdd) => {
     const cart = JSON.parse(localStorage.getItem('cart'));

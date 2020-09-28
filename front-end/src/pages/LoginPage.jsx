@@ -17,8 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     localStorage.clear();
-    console.log('limpei')
-  }, [])
+  });
 
   useEffect(() => {
     setIsValid(validate(values));

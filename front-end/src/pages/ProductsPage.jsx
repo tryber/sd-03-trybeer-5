@@ -32,7 +32,7 @@ function ProductsPage() {
 
   useEffect(() => {
     fetchAllProducts();
-  }, []);
+  });
 
   if (products.err) return <Redirect to="/login" />;
 
