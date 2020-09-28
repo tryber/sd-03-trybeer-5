@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function MenuTop() {
+function MenuTop({ pageTitle }) {
   return (
     <div classNameName="MenuTop">
       <nav className="navbar navbar-dark bg-dark">
@@ -17,7 +18,7 @@ function MenuTop() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <h1 data-testid="top-title" className="text-center">TryBeer</h1>
+          <h1 data-testid="top-title" className="text-center">{ pageTitle }</h1>
         </div>
       </nav>
 
@@ -45,3 +46,11 @@ function MenuTop() {
 }
 
 export default MenuTop;
+
+MenuTop.propTypes = {
+  pageTitle: PropTypes.string,
+};
+
+MenuTop.defaultProps = {
+  pageTitle: 'TryBeer',
+};
