@@ -9,11 +9,11 @@ function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState('0,00');
   const user = JSON.parse(localStorage.getItem('user'));
-
+  const token = user ? user.token : '';
   //if (!user.token) return <Redirect to="/login" />;
 
   const fetchAllProducts = async () =>
-    getAllProducts(user.token).then((products) => setProducts(products));
+    getAllProducts(token).then((products) => setProducts(products));
 
   const getTotalPrice = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -35,7 +35,7 @@ function ProductsPage() {
     fetchAllProducts();
   }, []);
 
-  //if (products.err) return <Redirect to="/login" />;
+  if (products.err) return <Redirect to="/login" />;
 
   return (
     <div>

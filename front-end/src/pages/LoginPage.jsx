@@ -16,6 +16,10 @@ export default function Login() {
   };
 
   useEffect(() => {
+    localStorage.clear();
+  }, [])
+
+  useEffect(() => {
     setIsValid(validate(values));
   }, [values]);
 
