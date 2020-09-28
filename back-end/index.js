@@ -13,8 +13,6 @@ const { connection } = require('./models');
 
 const app = express();
 
-const PORT = process.env.API_PORT || 3001;
-
 app.use(cors());
 
 app.use(bodyParser.json());
