@@ -40,7 +40,7 @@ function ProductsPage() {
     <div>
       {products.length > 0 ? (
         <div className="product-page">
-          <ListProductsCards products={products} totalPrice={getTotalPrice} />
+          <ListProductsCards products={products} getTotalPrice={getTotalPrice} />
           <CartButton totalPrice={totalPrice} />
         </div>
       ) : (
