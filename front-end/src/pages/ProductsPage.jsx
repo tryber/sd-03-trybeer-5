@@ -10,17 +10,17 @@ function ProductsPage() {
   const [totalPrice, setTotalPrice] = useState('0,00');
   const user = JSON.parse(localStorage.getItem('user'));
   const token = user ? user.token : '';
+  const lengthValidation = 0;
 
-  const fetchAllProducts = async () =>
-    getAllProducts(token).then((products) => setProducts(products));
+  const fetchAllProducts = async () => getAllProducts(token).then((result) => setProducts(result));
 
   const getTotalPrice = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
-    if (cart && cart.length > 0) {
+    if (cart && cart.length > lengthValidation) {
       const total = cart.reduce(
-        (total, { price, amount }) => (total += price * amount),
-        0
+        (acc, { price, amount }) => (acc += price * amount),
+        lengthValidation,
       );
       const price = formatPrice(total);
       return setTotalPrice(price);
@@ -38,10 +38,13 @@ function ProductsPage() {
 
   return (
     <div>
-      {products.length > 0 ? (
+      {products.length > lengthValidation ? (
         <div className="product-page">
-          <ListProductsCards products={products} getTotalPrice={getTotalPrice} />
-          <CartButton totalPrice={totalPrice} />
+          <ListProductsCards
+            products={ products }
+            getTotalPrice={ getTotalPrice }
+          />
+          <CartButton totalPrice={ totalPrice } />
         </div>
       ) : (
         <h1>Loading...</h1>
