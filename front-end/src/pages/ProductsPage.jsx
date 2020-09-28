@@ -10,7 +10,6 @@ function ProductsPage() {
   const [totalPrice, setTotalPrice] = useState('0,00');
   const user = JSON.parse(localStorage.getItem('user'));
   const token = user ? user.token : '';
-  //if (!user.token) return <Redirect to="/login" />;
 
   const fetchAllProducts = async () =>
     getAllProducts(token).then((products) => setProducts(products));
