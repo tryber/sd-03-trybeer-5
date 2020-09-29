@@ -14,6 +14,7 @@ const userLogin = async (email, pass) => {
 
   const { token } = generateJWT(userData);
   return {
+    id: user.id,
     name: user.name,
     email: user.email,
     token,

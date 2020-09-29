@@ -7,6 +7,7 @@ const {
   registerUser,
   updateClientName,
   getAllProducts,
+  registerSale,
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
@@ -14,8 +15,6 @@ const { connection } = require('./models');
 const PORT = process.env.API_PORT || 3001;
 
 const app = express();
-
-const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -30,6 +29,8 @@ app.post('/register', registerUser);
 app.post('/update-client-name', validateJWT, updateClientName);
 
 app.get('/products', validateJWT, getAllProducts);
+
+app.post('/checkout', registerSale);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
