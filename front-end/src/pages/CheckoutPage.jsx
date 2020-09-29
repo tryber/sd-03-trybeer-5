@@ -1,9 +1,131 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 function CheckoutPage() {
+  const [orderTotalValue, setOrderTotalValue] = useState('0,00');
+  const [rua, setRua] = useState('');
+  const [numeroCasa, setNumeroCasa] = useState('');
+  const [ableToSubmit, setAbleToSubmit] = useState(false);
+  const storageCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  useEffect(() => {
+    const storageUser = localStorage.getItem('user');
+    if (!storageUser) window.location.href = '/login';
+    setTotalValue();
+
+    if (storageCart.length > 0 && rua && numeroCasa) {
+      setAbleToSubmit(true);
+    }
+
+    console.log(ableToSubmit);
+  }, [orderTotalValue, rua, numeroCasa]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    localStorage.removeItem('cart');
+    window.location.href = '/products?msg=Compra realizada com sucesso!';
+  }
+
+  function deleteProduct(index) {
+    storageCart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(storageCart));
+    setTotalValue();
+  }
+
+  function setTotalValue() {
+    let totalValue = 0;
+    storageCart.map((el) => (totalValue += el.amount * el.price));
+    setOrderTotalValue(totalValue.toFixed(2).toString().replace('.', ','));
+  }
+
   return (
-    <div>
+    <div className="CheckoutPage">
       <h1>Tela de Checkout</h1>
+      <div className="container">
+        {storageCart.length > 0 ? (
+          storageCart.map((el, index) => (
+            <div className="card d-flex" id={`product-${index}`} key={index}>
+              <span
+                className="amount"
+                data-testid={`${index}-product-qtd-input`}
+              >
+                {el.amount}
+              </span>
+              <h4 className="name" data-testid={`${index}-product-name`}>
+                {el.name}
+              </h4>
+              <p
+                className="total-product-price"
+                data-testid={`${index}-product-total-value`}
+              >
+                R$ {(el.price * el.amount).toFixed(2).toString().replace('.', ',')}
+              </p>
+              <p
+                className="unit-price"
+                data-testid={`${index}-product-unit-price`}
+              >
+                (R$ {el.price.toFixed(2).toString().replace('.', ',')} un)
+              </p>
+              <button
+                data-testid={`${index}-removal-button`}
+                onClick={() => deleteProduct(index)}
+              >
+                X
+              </button>
+            </div>
+          ))
+        ) : (
+          <h3>Não há produtos no carrinho</h3>
+        )}
+
+        <div className="float-right">
+          <h3>
+            Total:
+            <span data-testid="order-total-value">R$ {orderTotalValue}</span>
+          </h3>
+        </div>
+
+        <div>
+          <form method="POST" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">
+                Rua
+                <input
+                  data-testid="checkout-street-input"
+                  className="form-control"
+                  type="text"
+                  name="rua"
+                  id="rua"
+                  onChange={(e) => setRua(e.target.value)}
+                  value={rua}
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">
+                Número da casa
+                <input
+                  data-testid="checkout-house-number-input"
+                  className="form-control"
+                  type="text"
+                  name="numeroCasa"
+                  id="numeroCasa"
+                  onChange={(e) => setNumeroCasa(e.target.value)}
+                  value={numeroCasa}
+                  required
+                />
+              </label>
+            </div>
+            <input
+              type="submit"
+              value="Finalizar Pedido"
+              disabled={!ableToSubmit}
+              data-testid="checkout-finish-btn"
+              className="btn-lg btn-primary fixed-bottom cart-content"
+            />
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

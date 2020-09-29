@@ -21,6 +21,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/checkout">
+          <MenuTop pageTitle="Finalizar Pedido" />
           <CheckoutPage />
         </Route>
         <Route path="/register">
