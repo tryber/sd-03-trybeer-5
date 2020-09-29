@@ -4,6 +4,7 @@ import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsApi';
 import formatPrice from '../utils/formatPrice';
+import getCartFromLocalStorage from '../utils/saveToLocalStorage';
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ function ProductsPage() {
   const fetchAllProducts = async () => getAllProducts(token).then((result) => setProducts(result));
 
   const getTotalPrice = () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cart = getCartFromLocalStorage();;
 
     if (cart && cart.length > lengthValidation) {
       const total = cart.reduce(

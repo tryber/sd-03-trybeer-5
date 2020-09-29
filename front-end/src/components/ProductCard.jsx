@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import formatPrice from '../utils/formatPrice';
-import getCartFromLocalStorage from '../utils/getCartFromLocalStorage';
+import { saveToLocalStorage, getCartFromLocalStorage } from '../utils/saveToLocalStorage';
 
 function ProductCard({ product, index, getTotalPrice }) {
   const { name, image, price } = product;
@@ -32,15 +32,15 @@ function ProductCard({ product, index, getTotalPrice }) {
 
     if (!cart && productToAdd.amount > 0) {
       // cria carrinho
-      localStorage.setItem('cart', JSON.stringify([productToAdd]));
+      saveToLocalStorage([productToAdd], 'cart');
     } else if (cart && productToAdd.amount === 0) {
       // remove do carrinho
       const newCart = cart.filter(({ id }) => id !== productToAdd.id);
-      localStorage.setItem('cart', JSON.stringify([...newCart]));
+      saveToLocalStorage([...newCart], 'cart');
     } else if (cart && productToAdd.amount > 0) {
       // adiciona a carrinho existente
       const newCart = cart.filter(({ id }) => id !== productToAdd.id);
-      localStorage.setItem('cart', JSON.stringify([...newCart, productToAdd]));
+      saveToLocalStorage([...newCart, productToAdd], 'cart');
     } else {
       return null;
     }
