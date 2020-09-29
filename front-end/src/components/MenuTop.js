@@ -40,7 +40,6 @@ function MenuTop({ pageTitle }) {
           </ul>
         </div>
       </nav>
-
     </div>
   );
 }

@@ -1,5 +1,7 @@
-const saveToLocalStorage = (info) => {
-  localStorage.setItem('user', JSON.stringify(info));
+const saveToLocalStorage = (info, name = 'user') => {
+  localStorage.setItem(name, JSON.stringify(info));
 };
 
-module.exports = { saveToLocalStorage };
+const getCartFromLocalStorage = () => JSON.parse(localStorage.getItem('cart'));
+
+module.exports = { saveToLocalStorage, getCartFromLocalStorage };
