@@ -30,7 +30,7 @@ app.post('/update-client-name', validateJWT, updateClientName);
 
 app.get('/products', validateJWT, getAllProducts);
 
-app.post('/checkout', registerSale);
+app.post('/checkout', validateJWT, registerSale);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 

@@ -31,8 +31,8 @@ const registerSale = async (
   }
 
   await Promise.all(
-    products.forEach(({ id: { productId }, quantity }) => {
-      salesModel.registerProductSold(saleId, productId, quantity);
+    products.forEach(({ id: { productId }, amount }) => {
+      salesModel.registerProductSold(saleId, productId, amount);
     }),
   );
 
