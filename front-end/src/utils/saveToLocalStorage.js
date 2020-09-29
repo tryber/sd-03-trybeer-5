@@ -4,5 +4,5 @@ const saveToLocalStorage = (info, name = 'user') => {
 
 const getFromLocalStorage = () => JSON.parse(localStorage.getItem('user'));
 const getCartFromLocalStorage = () => JSON.parse(localStorage.getItem('cart'));
-module.exports = { saveToLocalStorage, getFromLocalStorage, getCartFromLocalStorage };
 
+module.exports = { saveToLocalStorage, getFromLocalStorage, getCartFromLocalStorage };
