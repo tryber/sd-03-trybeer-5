@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import formatPrice from '../utils/formatPrice';
+import getCartFromLocalStorage from '../utils/getCartFromLocalStorage';
 
 function ProductCard({ product, index, getTotalPrice }) {
   const { name, image, price } = product;
   const [amount, setAmount] = useState(0);
 
   const existsInCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cart = getCartFromLocalStorage();
 
     if (!cart || cart.length === 0) return null;
 
@@ -27,7 +28,7 @@ function ProductCard({ product, index, getTotalPrice }) {
   };
 
   const updateCart = (productToAdd) => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
+    const cart = getCartFromLocalStorage();
 
     if (!cart && productToAdd.amount > 0) {
       // cria carrinho
