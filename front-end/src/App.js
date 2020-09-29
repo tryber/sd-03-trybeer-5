@@ -15,6 +15,7 @@ import ProductsPage from './pages/ProductsPage';
 import SignupPage from './pages/SignupPage';
 import MenuTop from './components/MenuTop';
 import AdminMenuSideBar from './components/AdminMenuSideBar';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -37,6 +38,10 @@ function App() {
         <Route path="/admin/profile">
           <AdminMenuSideBar />
           <AdminProfile />
+        </Route>
+        <Route exact path="/profile">
+          <MenuTop pageTitle="Meu perfil" datatest="top-title" />
+          <ProfilePage />
         </Route>
         <Route exact path="/login">
           <LoginPage />
