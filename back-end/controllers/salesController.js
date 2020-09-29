@@ -10,7 +10,7 @@ const registerSale = rescue(async (req, res) => {
     delivery,
     saleDate,
     status,
-    products
+    products,
   );
 
   if (sale.err) return res.status(422).json(sale);
