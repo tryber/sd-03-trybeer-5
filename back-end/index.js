@@ -15,6 +15,8 @@ const PORT = process.env.API_PORT || 3001;
 
 const app = express();
 
+const PORT = process.env.PORT || 3001;
+
 app.use(cors());
 
 app.use('/images', express.static(`${process.cwd()}/images`));

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function MenuTop({ pageTitle }) {
   return (
-    <div classNameName="MenuTop">
+    <div className="MenuTop">
       <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
           <button
