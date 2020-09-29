@@ -4,7 +4,7 @@ import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsApi';
 import formatPrice from '../utils/formatPrice';
-import getCartFromLocalStorage from '../utils/saveToLocalStorage';
+import { getCartFromLocalStorage } from '../utils/saveToLocalStorage';
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);

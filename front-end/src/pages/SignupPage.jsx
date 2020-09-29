@@ -148,8 +148,8 @@ function SignupPage() {
             className="btn btn-primary"
           />
         </form>
-        <p className="text-muted">{error}</p>
       </div>
+      <p className="text-muted text-center">{error}</p>
     </div>
   );
 }
