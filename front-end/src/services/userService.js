@@ -23,4 +23,18 @@ const register = async (name, email, password, seller) => {
   });
   return response.json();
 };
-module.exports = { login, register };
+
+const changeClientName = async (obj, token) => {
+  const { name, email } = obj;
+  const response = await fetch('http://localhost:3001/update-client-name', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', authorization: token },
+    body: JSON.stringify({
+      name,
+      email,
+    }),
+  });
+  return response.json();
+};
+
+module.exports = { login, register, changeClientName };

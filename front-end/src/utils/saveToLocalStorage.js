@@ -2,4 +2,6 @@ const saveToLocalStorage = (info) => {
   localStorage.setItem('user', JSON.stringify(info));
 };
 
-module.exports = { saveToLocalStorage };
+const getFromLocalStorage = () => JSON.parse(localStorage.getItem('user'));
+
+module.exports = { saveToLocalStorage, getFromLocalStorage };
