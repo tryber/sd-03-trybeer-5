@@ -6,6 +6,7 @@ import { login } from '../services/userService';
 export default function Login() {
   const [isValid, setIsValid] = useState(true);
   const { values, handleChange } = useForm({ email: '', password: '' });
+
   const validate = (loginInfo) => {
     const minPasswd = 6;
     const password = loginInfo.password.length >= minPasswd;
@@ -13,11 +14,15 @@ export default function Login() {
     const email = expression.test(String(loginInfo.email).toLowerCase());
     return password === email;
   };
-  
+
+  useEffect(() => {
+    localStorage.clear();
+  });
+
   useEffect(() => {
     setIsValid(validate(values));
   }, [values]);
-  
+
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
     const rawResponse = login(values);
@@ -34,60 +39,71 @@ export default function Login() {
       window.location.href = '/products/';
     }
   };
+
   const handleNoAccountSubmit = (e) => {
     e.preventDefault();
     window.location.href = '/register';
   };
+
   return (
-    <form>
-      <div className="mb-3">
-        <label className="form-label">Email:</label>
-        <input
-          type="email"
-          data-testid="email-input"
-          value={ values.email }
-          className="form-control"
-          id="email"
-          name="email"
-          onChange={ (event) => handleChange(event) }
-        />
+    <div className="card">
+      <h1 className="text-center">Trybeer - Login</h1>
+      <div className="d-flex justify-content-center align-items-center">
+        <form>
+          <div className="mb-3">
+            <label className="form-label">Email:</label>
+            <input
+              type="email"
+              data-testid="email-input"
+              value={values.email}
+              className="form-control"
+              id="email"
+              name="email"
+              onChange={(event) => handleChange(event)}
+            />
+          </div>
+          <div className="mb-3">
+            <label
+              value={values.password}
+              className="form-label"
+              name="password"
+            >
+              Password:
+            </label>
+            <input
+              data-testid="password-input"
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              onChange={(event) => handleChange(event)}
+            />
+          </div>
+          <div className="btn-group" role="group">
+            <div className="mb-3 mr-2">
+              <button
+                data-testid="signin-btn"
+                type="submit"
+                className="btn btn-primary"
+                disabled={!isValid}
+                onClick={(event) => handleSignInSubmit(event)}
+              >
+                ENTRAR
+              </button>
+            </div>
+            <div className="mb-3">
+              <button
+                onClick={(event) => handleNoAccountSubmit(event)}
+                type="submit"
+                data-testid="no-account-btn"
+                className="btn btn-primary"
+              >
+                Ainda não tenho conta
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
-      <div className="mb-3">
-        <label value={ values.password } className="form-label" name="password">
-          Password:
-        </label>
-        <input
-          data-testid="password-input"
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          onChange={ (event) => handleChange(event) }
-        />
-      </div>
-      <div className="btn-group" role="group">
-        <div className="mb-3 mr-2">
-          <button
-            data-testid="signin-btn"
-            type="submit"
-            className="btn btn-primary"
-            disabled={ !isValid }
-            onClick={ (event) => handleSignInSubmit(event) }
-          >
-            ENTRAR
-          </button>
-        </div>
-        <div className="mb-3">
-          <button
-            onClick={ (event) => handleNoAccountSubmit(event) }
-            type="submit"
-            data-testid="no-account-btn"
-            className="btn btn-primary"
-          >
-            Ainda não tenho conta
-          </button>
-        </div>
-      </div>
-    </form>
+    </div>
   );
 }

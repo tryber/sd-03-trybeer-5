@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function MenuTop({ pageTitle }) {
+function MenuTop({ pageTitle, dataTest }) {
   return (
     <div className="MenuTop">
       <nav className="navbar navbar-dark bg-dark">
@@ -22,7 +22,7 @@ function MenuTop({ pageTitle }) {
         </div>
       </nav>
 
-      <nav id="navbarToggleExternalContent" className="collapse side-menu-container">
+      <nav id="navbarToggleExternalContent" data-testid={ dataTest } className="collapse side-menu-container">
         <div className="">
           <ul className="nav flex-column">
             <li className="nav-item">
@@ -40,7 +40,6 @@ function MenuTop({ pageTitle }) {
           </ul>
         </div>
       </nav>
-
     </div>
   );
 }
@@ -49,8 +48,10 @@ export default MenuTop;
 
 MenuTop.propTypes = {
   pageTitle: PropTypes.string,
+  dataTest: PropTypes.string,
 };
 
 MenuTop.defaultProps = {
   pageTitle: 'TryBeer',
+  dataTest: '',
 };

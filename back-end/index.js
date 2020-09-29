@@ -18,9 +18,9 @@ const app = express();
 
 app.use(cors());
 
-app.use('/images', express.static(`${process.cwd()}/images`));
-
 app.use(bodyParser.json());
+
+app.use('/images', express.static(`${process.cwd()}/images`));
 
 app.post('/login', userLogin);
 
