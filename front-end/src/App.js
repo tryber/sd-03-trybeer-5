@@ -1,16 +1,18 @@
 import React from 'react';
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
+import './App.css';
 
-import SignupPage from './pages/SignupPage';
-import Products from './pages/Products';
 import AdminOrders from './pages/AdminOrders';
+import CheckoutPage from './pages/CheckoutPage';
 import AdminProfile from './pages/AdminProfile';
 import LoginPage from './pages/LoginPage';
+import ProductsPage from './pages/ProductsPage';
+import SignupPage from './pages/SignupPage';
 import MenuTop from './components/MenuTop';
 import AdminMenuSideBar from './components/AdminMenuSideBar';
 import ProfilePage from './pages/ProfilePage';
@@ -19,13 +21,15 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/checkout">
+          <CheckoutPage />
+        </Route>
         <Route path="/register">
-          <MenuTop />
           <SignupPage />
         </Route>
         <Route path="/products">
           <MenuTop />
-          <Products />
+          <ProductsPage />
         </Route>
         <Route path="/admin/orders">
           <AdminMenuSideBar />
@@ -40,12 +44,10 @@ function App() {
           <ProfilePage />
         </Route>
         <Route exact path="/login">
-          <MenuTop />
           <LoginPage />
         </Route>
         <Route exact path="/">
-          <MenuTop />
-          <LoginPage />
+          <Redirect to="/login" />
         </Route>
       </Switch>
     </Router>
