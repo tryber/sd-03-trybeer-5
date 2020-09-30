@@ -10,7 +10,7 @@ const registerSale = rescue(async (req, res) => {
     delivery,
     saleDate,
     status,
-    products,
+    products
   );
 
   if (sale.err) return res.status(422).json(sale);
@@ -18,6 +18,13 @@ const registerSale = rescue(async (req, res) => {
   return res.status(201).json(sale);
 });
 
+const getAllOrders = rescue(async (_req, res) => {
+  const orders = await salesService.getAllOrders();
+
+  return res.status(200).json(orders);
+});
+
 module.exports = {
   registerSale,
+  getAllOrders,
 };
