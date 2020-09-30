@@ -6,7 +6,7 @@ const registerSale = async (
   delivery,
   saleDate,
   status,
-  products
+  products,
 ) => {
   const { address, number } = delivery;
 
@@ -16,7 +16,7 @@ const registerSale = async (
     address,
     number,
     saleDate,
-    status
+    status,
   );
 
   const saleId = sale.getAutoIncrementValue();
@@ -33,7 +33,7 @@ const registerSale = async (
   await Promise.all(
     products.forEach(({ id: { productId }, amount }) => {
       salesModel.registerProductSold(saleId, productId, amount);
-    })
+    }),
   );
 
   return { message: 'Compra realizada com sucesso!' };
@@ -43,5 +43,5 @@ const getAllOrders = async () => salesModel.getAllOrders();
 
 module.exports = {
   registerSale,
-  getAllOrders
+  getAllOrders,
 };
