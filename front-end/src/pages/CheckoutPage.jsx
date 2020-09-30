@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { checkOut } from '../services/checkoutService';
 
 function CheckoutPage() {
   const [orderTotalValue, setOrderTotalValue] = useState('0,00');
@@ -6,23 +7,31 @@ function CheckoutPage() {
   const [numeroCasa, setNumeroCasa] = useState('');
   const [ableToSubmit, setAbleToSubmit] = useState(false);
   const storageCart = JSON.parse(localStorage.getItem('cart')) || [];
+  const storageUser = JSON.parse(localStorage.getItem('user')) || {};
 
   useEffect(() => {
-    const storageUser = localStorage.getItem('user');
-    if (!storageUser) window.location.href = '/login';
+    if (!storageUser.id) window.location.href = '/login';
     setTotalValue();
 
     if (storageCart.length > 0 && rua && numeroCasa) {
       setAbleToSubmit(true);
     }
-
-    console.log(ableToSubmit);
   }, [orderTotalValue, rua, numeroCasa]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    localStorage.removeItem('cart');
-    window.location.href = '/products?msg=Compra realizada com sucesso!';
+    const { id, token } = storageUser;
+    const delivery = {address: rua, number: numeroCasa};
+    const saleDate = new Date().toISOString().replace('T', ' ').replace('Z', '');
+    const status = "Pendente";
+
+    const checkoutResponse = await checkOut(token, id, parseFloat(orderTotalValue.replace(',', '.')), delivery, saleDate, status, storageCart);
+
+    if(!checkoutResponse.err) {
+      localStorage.removeItem('cart');
+      window.location.href = '/products?msg=Compra realizada com sucesso!';
+    }
+
   }
 
   function deleteProduct(index) {
