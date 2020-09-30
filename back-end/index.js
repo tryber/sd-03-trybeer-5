@@ -33,7 +33,7 @@ app.get('/products', validateJWT, getAllProducts);
 
 app.post('/checkout', validateJWT, registerSale);
 
-app.get('/admin/orders', getAllOrders);
+app.get('/admin/orders', validateJWT, getAllOrders);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
