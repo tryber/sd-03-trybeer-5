@@ -7,6 +7,7 @@ const {
   registerUser,
   updateClientName,
   getAllProducts,
+  registerSale,
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
@@ -28,6 +29,8 @@ app.post('/register', registerUser);
 app.post('/update-client-name', validateJWT, updateClientName);
 
 app.get('/products', validateJWT, getAllProducts);
+
+app.post('/checkout', validateJWT, registerSale);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
