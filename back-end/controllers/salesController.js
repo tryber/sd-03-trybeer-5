@@ -18,6 +18,15 @@ const registerSale = rescue(async (req, res) => {
   return res.status(201).json(sale);
 });
 
+const updateOrderStatus = rescue(async (req, res) => {
+  const { id } = req.params;
+
+  await salesService.updateOrderStatus(id);
+
+  return res.status(200).json({ message: 'Atualizado com sucesso' });
+});
+
 module.exports = {
   registerSale,
+  updateOrderStatus,
 };
