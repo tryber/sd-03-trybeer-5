@@ -18,6 +18,15 @@ const registerSale = rescue(async (req, res) => {
   return res.status(201).json(sale);
 });
 
+const getAllClientOrders = rescue(async (req, res) => {
+  const { id } = req.params;
+
+  const orders = await salesService.getAllClientOrders(id);
+
+  return res.status(200).json(orders);
+});
+
 module.exports = {
   registerSale,
+  getAllClientOrders,
 };

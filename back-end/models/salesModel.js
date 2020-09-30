@@ -33,7 +33,22 @@ const registerProductSold = async (saleId, productId, quantity) => connection().
   .values(saleId, productId, quantity)
   .execute());
 
+const getAllClientOrders = async (id) => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select(['id', 'total_price', 'sale_date'])
+    .where('user_id = :id')
+    .bind('id', id)
+    .execute())
+  .then((results) => results.fetchAll())
+  .then((orders) => orders.map(([orderNumber, totalPrice, saleDate]) => ({
+    orderNumber,
+    totalPrice,
+    saleDate,
+  })));
+
 module.exports = {
   registerSale,
   registerProductSold,
+  getAllClientOrders,
 };
