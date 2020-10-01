@@ -9,6 +9,7 @@ import { getCartFromLocalStorage } from '../utils/saveToLocalStorage';
 function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState('0,00');
+  const [successMessage, setSuccessMessage] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const token = user ? user.token : '';
   const lengthValidation = 0;
@@ -16,7 +17,7 @@ function ProductsPage() {
   const fetchAllProducts = async () => getAllProducts(token).then((result) => setProducts(result));
 
   const getTotalPrice = () => {
-    const cart = getCartFromLocalStorage();;
+    const cart = getCartFromLocalStorage();
 
     if (cart && cart.length > lengthValidation) {
       const total = cart.reduce(
@@ -35,10 +36,18 @@ function ProductsPage() {
     fetchAllProducts();
   });
 
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const message = urlParams.get('msg')
+    setSuccessMessage(message);
+  }, [])
+
   if (products.err) return <Redirect to="/login" />;
 
   return (
     <div>
+      <span className="center">{successMessage}</span>
       {products.length > lengthValidation ? (
         <div className="product-page">
           <ListProductsCards

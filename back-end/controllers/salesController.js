@@ -2,7 +2,7 @@ const rescue = require('express-rescue');
 const { salesService } = require('../services');
 
 const registerSale = rescue(async (req, res) => {
-  const { userId, totalPrice, delivery, saleDate, status, products } = req;
+  const { userId, totalPrice, delivery, saleDate, status, products } = req.body;
 
   const sale = await salesService.registerSale(
     userId,
