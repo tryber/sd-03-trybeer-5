@@ -46,7 +46,7 @@ function App() {
           <AdminProfile />
         </Route>
         <Route exact path="/profile">
-          <MenuTop pageTitle="Meu Perfil" datatest="top-title" />
+          <MenuTop pageTitle="Meu perfil" datatest="top-title" />
           <ProfilePage />
         </Route>
         <Route exact path="/login">
