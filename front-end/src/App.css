@@ -135,6 +135,7 @@
 .cards-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 4rem;
 }
 
@@ -161,4 +162,11 @@
 .cart-button {
   width: 25rem;
   margin: 20px 0;
+}
+
+/* All Pages */
+
+.main-page {
+  margin: 100px 300px 0;
+  padding: 20px;
 }

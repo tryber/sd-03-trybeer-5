@@ -17,7 +17,7 @@ const ProfilePage = () => {
     setMsg('Atualização concluída com sucesso')
   };
   return (
-    <div>
+    <div className="main-page">
       <form>
         <fieldset aria-label="Disabled fieldset example">
           <div className="mb-3">
@@ -50,7 +50,7 @@ const ProfilePage = () => {
           </button>
         </fieldset>
       </form>
-      <h1>{msg}</h1>
+      <span>{msg}</span>
     </div>
   );
 };

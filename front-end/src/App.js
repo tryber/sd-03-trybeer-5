@@ -16,11 +16,16 @@ import SignupPage from './pages/SignupPage';
 import MenuTop from './components/MenuTop';
 import AdminMenuSideBar from './components/AdminMenuSideBar';
 import ProfilePage from './pages/ProfilePage';
+import ClientOrdersPage from './pages/ClientOrdersPage';
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/orders">
+          <MenuTop pageTitle="Meu Pedidos" datatest="top-title" />
+          <ClientOrdersPage />
+        </Route>
         <Route path="/checkout">
           <CheckoutPage />
         </Route>
@@ -40,7 +45,7 @@ function App() {
           <AdminProfile />
         </Route>
         <Route exact path="/profile">
-          <MenuTop pageTitle="Meu perfil" datatest="top-title" />
+          <MenuTop pageTitle="Meu Perfil" datatest="top-title" />
           <ProfilePage />
         </Route>
         <Route exact path="/login">

@@ -46,7 +46,7 @@ export default function Login() {
   };
 
   return (
-    <div className="card">
+    <div className="main-page card">
       <h1 className="text-center">Trybeer - Login</h1>
       <div className="d-flex justify-content-center align-items-center">
         <form>
