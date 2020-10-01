@@ -27,6 +27,7 @@ function App() {
           <ClientOrdersPage />
         </Route>
         <Route path="/checkout">
+          <MenuTop pageTitle="Finalizar Pedido" />
           <CheckoutPage />
         </Route>
         <Route path="/register">
