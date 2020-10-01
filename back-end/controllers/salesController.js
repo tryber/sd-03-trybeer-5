@@ -19,7 +19,7 @@ const registerSale = rescue(async (req, res) => {
 });
 
 const getAllClientOrders = rescue(async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
 
   const orders = await salesService.getAllClientOrders(id);
 
