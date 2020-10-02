@@ -37,12 +37,15 @@ const registerSale = async (
   return { message: 'Compra realizada com sucesso!' };
 };
 
+const getAllOrders = async () => salesModel.getAllOrders();
+
 const getAllClientOrders = async (id) => salesModel.getAllClientOrders(id);
 
 const updateOrderStatus = async (id) => salesModel.updateOrderStatus(id);
 
 module.exports = {
   registerSale,
+  getAllOrders,
   getAllClientOrders,
   updateOrderStatus,
 };

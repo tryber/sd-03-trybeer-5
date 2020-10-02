@@ -18,6 +18,12 @@ const registerSale = rescue(async (req, res) => {
   return res.status(201).json(sale);
 });
 
+const getAllOrders = rescue(async (_req, res) => {
+  const orders = await salesService.getAllOrders();
+
+  return res.status(200).json(orders);
+ });
+
 const getAllClientOrders = rescue(async (req, res) => {
   const { id } = req.query;
 
@@ -36,6 +42,7 @@ const updateOrderStatus = rescue(async (req, res) => {
 
 module.exports = {
   registerSale,
+  getAllOrders,
   getAllClientOrders,
   updateOrderStatus,
 };

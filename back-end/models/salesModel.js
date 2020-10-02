@@ -33,6 +33,34 @@ const registerProductSold = async (saleId, productId, quantity) => connection().
   .values(saleId, productId, quantity)
   .execute());
 
+const getAllOrders = async () => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select([
+      'id',
+      'total_price',
+      'delivery_address',
+      'delivery_number',
+      'status',
+    ])
+    .execute())
+  .then((result) => result.fetchAll())
+  .then((orders) => orders.map(
+    ([
+      orderNumber,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status,
+    ]) => ({
+      orderNumber,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status,
+    }),
+  ));
+
 const getAllClientOrders = async (id) => connection()
   .then((db) => db
     .getTable('sales')
@@ -58,6 +86,7 @@ const updateOrderStatus = async (id) => connection().then((db) => db
 module.exports = {
   registerSale,
   registerProductSold,
+  getAllOrders,
   getAllClientOrders,
   updateOrderStatus,
 };

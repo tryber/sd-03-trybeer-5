@@ -8,6 +8,7 @@ const {
   updateClientName,
   getAllProducts,
   registerSale,
+  getAllOrders,
   getAllClientOrders,
   updateOrderStatus,
 } = require('./controllers');
@@ -33,6 +34,8 @@ app.put('/update-client-name', validateJWT, updateClientName);
 app.get('/products', validateJWT, getAllProducts);
 
 app.post('/checkout', validateJWT, registerSale);
+
+app.get('/admin/orders', validateJWT, getAllOrders);
 
 app.get('/orders', validateJWT, getAllClientOrders);
 
