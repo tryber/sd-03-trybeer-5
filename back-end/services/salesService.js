@@ -37,6 +37,9 @@ const registerSale = async (
   return { message: 'Compra realizada com sucesso!' };
 };
 
+const updateOrderStatus = async (id) => salesModel.updateOrderStatus(id);
+
 module.exports = {
   registerSale,
+  updateOrderStatus,
 };

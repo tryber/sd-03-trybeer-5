@@ -8,6 +8,7 @@ const {
   updateClientName,
   getAllProducts,
   registerSale,
+  updateOrderStatus,
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
@@ -26,11 +27,13 @@ app.post('/login', userLogin);
 
 app.post('/register', registerUser);
 
-app.post('/update-client-name', validateJWT, updateClientName);
+app.put('/update-client-name', validateJWT, updateClientName);
 
 app.get('/products', validateJWT, getAllProducts);
 
 app.post('/checkout', validateJWT, registerSale);
+
+app.put('/orders/:id', updateOrderStatus);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
