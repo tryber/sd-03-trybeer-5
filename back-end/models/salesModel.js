@@ -61,8 +61,32 @@ const getAllOrders = async () => connection()
     }),
   ));
 
+const getAllClientOrders = async (id) => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select(['id', 'total_price', 'sale_date'])
+    .where('user_id = :id')
+    .bind('id', id)
+    .execute())
+  .then((results) => results.fetchAll())
+  .then((orders) => orders.map(([orderNumber, totalPrice, saleDate]) => ({
+    orderNumber,
+    totalPrice,
+    saleDate,
+  })));
+
+const updateOrderStatus = async (id) => connection().then((db) => db
+  .getTable('sales')
+  .update()
+  .set('status', 'Entregue')
+  .where('id = :id')
+  .bind('id', id)
+  .execute());
+
 module.exports = {
   registerSale,
   registerProductSold,
   getAllOrders,
+  getAllClientOrders,
+  updateOrderStatus,
 };

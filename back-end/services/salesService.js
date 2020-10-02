@@ -31,9 +31,7 @@ const registerSale = async (
   }
 
   await Promise.all(
-    products.forEach(({ id: { productId }, amount }) => {
-      salesModel.registerProductSold(saleId, productId, amount);
-    }),
+    products.map(({ id, amount }) => salesModel.registerProductSold(saleId, id, amount)),
   );
 
   return { message: 'Compra realizada com sucesso!' };
@@ -41,7 +39,13 @@ const registerSale = async (
 
 const getAllOrders = async () => salesModel.getAllOrders();
 
+const getAllClientOrders = async (id) => salesModel.getAllClientOrders(id);
+
+const updateOrderStatus = async (id) => salesModel.updateOrderStatus(id);
+
 module.exports = {
   registerSale,
   getAllOrders,
+  getAllClientOrders,
+  updateOrderStatus,
 };

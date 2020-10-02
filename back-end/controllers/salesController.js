@@ -2,7 +2,7 @@ const rescue = require('express-rescue');
 const { salesService } = require('../services');
 
 const registerSale = rescue(async (req, res) => {
-  const { userId, totalPrice, delivery, saleDate, status, products } = req;
+  const { userId, totalPrice, delivery, saleDate, status, products } = req.body;
 
   const sale = await salesService.registerSale(
     userId,
@@ -22,9 +22,27 @@ const getAllOrders = rescue(async (_req, res) => {
   const orders = await salesService.getAllOrders();
 
   return res.status(200).json(orders);
+ });
+
+const getAllClientOrders = rescue(async (req, res) => {
+  const { id } = req.query;
+
+  const orders = await salesService.getAllClientOrders(id);
+
+  return res.status(200).json(orders);
+ });
+
+const updateOrderStatus = rescue(async (req, res) => {
+  const { id } = req.params;
+
+  await salesService.updateOrderStatus(id);
+
+  return res.status(200).json({ message: 'Atualizado com sucesso' });
 });
 
 module.exports = {
   registerSale,
   getAllOrders,
+  getAllClientOrders,
+  updateOrderStatus,
 };
