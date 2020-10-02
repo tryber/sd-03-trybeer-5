@@ -47,8 +47,17 @@ const getAllClientOrders = async (id) => connection()
     saleDate,
   })));
 
+const updateOrderStatus = async (id) => connection().then((db) => db
+  .getTable('sales')
+  .update()
+  .set('status', 'Entregue')
+  .where('id = :id')
+  .bind('id', id)
+  .execute());
+
 module.exports = {
   registerSale,
   registerProductSold,
   getAllClientOrders,
+  updateOrderStatus,
 };
