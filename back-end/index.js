@@ -8,6 +8,7 @@ const {
   updateClientName,
   getAllProducts,
   registerSale,
+  getAllClientOrders,
   updateOrderStatus,
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
@@ -33,8 +34,12 @@ app.get('/products', validateJWT, getAllProducts);
 
 app.post('/checkout', validateJWT, registerSale);
 
-app.put('/orders/:id', updateOrderStatus);
+app.get('/orders', validateJWT, getAllClientOrders);
+
+app.put('/orders/:id', validateJWT, updateOrderStatus);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
-connection().then(() => console.log(`Banco conectado via: ${process.env.MYSQL_USER}@${process.env.HOSTNAME};`));
+connection().then(() => console.log(
+  `Banco conectado via: ${process.env.MYSQL_USER}@${process.env.HOSTNAME};`,
+));
