@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductCard from './ProductCard';
+import OrderCard from './OrderCard';
 
 function ListOrdersCards({ orders }) {
   return (
     <div className="cards-list">
       {orders.map((order, index) => (
-        <ProductCard order={order} index={index} key={order.orderNumber} />
+        <OrderCard order={order} index={index} key={order.orderNumber} />
       ))}
     </div>
   );
