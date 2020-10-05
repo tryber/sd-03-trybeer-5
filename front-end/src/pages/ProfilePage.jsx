@@ -7,15 +7,18 @@ const ProfilePage = () => {
   const [user, setUser] = useState({});
   const { values, handleChange } = useForm({ name: '' });
   const [msg, setMsg] = useState('');
+
   useEffect(() => {
     setUser(getFromLocalStorage());
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await changeClientName({ name: values.name, email: user.email}, user.token);
+    const res = await changeClientName({ name: values.name, email: user.email }, user.token);
     saveToLocalStorage(res);
-    setMsg('Atualização concluída com sucesso')
+    setMsg('Atualização concluída com sucesso');
   };
+
   return (
     <div className="main-page">
       <form>
@@ -50,7 +53,7 @@ const ProfilePage = () => {
           </button>
         </fieldset>
       </form>
-      <span>{msg}</span>
+      <p className="text-center message">{msg}</p>
     </div>
   );
 };
