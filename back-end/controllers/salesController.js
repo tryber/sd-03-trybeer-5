@@ -18,14 +18,14 @@ const registerSale = rescue(async (req, res) => {
   return res.status(201).json(sale);
 });
 
-const getOneOrder = rescue(async (req, res, next) => {
+const getOneOrder = rescue(async (req, res) => {
   try {
     const { id } = req.params;
     const salesData = await salesService.salesDetailsById(id);
 
     return res.status(200).json({ sale: salesData });
   } catch (error) {
-    return res.json({error});
+    return res.json({ error });
   }
 });
 
