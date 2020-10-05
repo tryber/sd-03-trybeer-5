@@ -25,7 +25,7 @@ const getOneOrder = rescue(async (req, res, next) => {
 
     return res.status(200).json({ sale: salesData });
   } catch (error) {
-    return next(generateError(404, error));
+    return res.json({error});
   }
 });
 
@@ -33,7 +33,7 @@ const getAllOrders = rescue(async (_req, res) => {
   const orders = await salesService.getAllOrders();
 
   return res.status(200).json(orders);
- });
+});
 
 const getAllClientOrders = rescue(async (req, res) => {
   const { id } = req.query;
@@ -41,7 +41,7 @@ const getAllClientOrders = rescue(async (req, res) => {
   const orders = await salesService.getAllClientOrders(id);
 
   return res.status(200).json(orders);
- });
+});
 
 const updateOrderStatus = rescue(async (req, res) => {
   const { id } = req.params;
@@ -52,7 +52,6 @@ const updateOrderStatus = rescue(async (req, res) => {
 });
 
 module.exports = {
-  
   registerSale,
   getAllOrders,
   getOneOrder,

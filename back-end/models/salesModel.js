@@ -75,15 +75,17 @@ const getAllClientOrders = async (id) => connection()
     saleDate,
   })));
 
-  const getSalesDetailsByID = async (saleId) => {
-    try {
-      const joinQuery = `SELECT sales.*, sproducts.product_id AS sold_product_id, sproducts.quantity AS sold_quantity, products.name AS product_name, products.price AS product_price, products.url_image AS product_image FROM Trybeer.sales_products AS sproducts INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id AND sales.id = ${saleId} INNER JOIN Trybeer.products AS products ON sproducts.product_id = products.id ORDER BY sales.id`;
-  
-      const searchQuery = await sqlConnection(joinQuery);
-  
-      const results = await searchQuery.fetchAll();
-      const salesResults = results.reduce(
-        (acc, [
+const getSalesDetailsByID = async (saleId) => {
+  try {
+    const joinQuery = `SELECT sales.*, sproducts.product_id AS sold_product_id, sproducts.quantity AS sold_quantity, products.name AS product_name, products.price AS product_price, products.url_image AS product_image FROM Trybeer.sales_products AS sproducts INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id AND sales.id = ${saleId} INNER JOIN Trybeer.products AS products ON sproducts.product_id = products.id ORDER BY sales.id`;
+
+    const searchQuery = await sqlConnection(joinQuery);
+
+    const results = await searchQuery.fetchAll();
+    const salesResults = results.reduce(
+      (
+        acc,
+        [
           id,
           userID,
           totalPrice,
@@ -96,7 +98,10 @@ const getAllClientOrders = async (id) => connection()
           productName,
           productPrice,
           productImage,
-        ]) => ([...acc, {
+        ]
+      ) => [
+        ...acc,
+        {
           saleID: id,
           userID,
           orderValue: totalPrice,
@@ -109,14 +114,16 @@ const getAllClientOrders = async (id) => connection()
           productName,
           productPrice,
           productImage,
-        }]), [],
-      );
-  
-      return salesResults;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  };
+        },
+      ],
+      []
+    );
+
+    return salesResults;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 const updateOrderStatus = async (id) => connection().then((db) => db
   .getTable('sales')
