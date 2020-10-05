@@ -28,7 +28,7 @@ function ClientOrdersPage() {
       ) : (
         <h1 className="text-center">
           {orders && orders.length === 0
-            ? 'Nenhum pedido registrado.'
+            ? 'Nenhum pedido registrado'
             : 'Loading...'}
         </h1>
       )}
