@@ -5,7 +5,7 @@ import { getFromLocalStorage } from '../utils/saveToLocalStorage';
 import ListOrdersCards from '../components/ListOrdersCards';
 
 function ClientOrdersPage() {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(null);
   const user = getFromLocalStorage();
   const lengthValidation = 0;
 
@@ -23,10 +23,14 @@ function ClientOrdersPage() {
 
   return (
     <div>
-      {orders.length > lengthValidation ? (
+      {orders && orders.length > lengthValidation ? (
         <ListOrdersCards orders={orders} />
       ) : (
-        <h1>Loading...</h1>
+        <h1 className="text-center">
+          {orders && orders.length === 0
+            ? 'Nenhum pedido registrado.'
+            : 'Loading...'}
+        </h1>
       )}
     </div>
   );

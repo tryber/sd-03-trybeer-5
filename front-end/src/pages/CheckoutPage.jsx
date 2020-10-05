@@ -48,8 +48,8 @@ function CheckoutPage() {
 
   return (
     <div className="CheckoutPage">
-      <h1>Tela de Checkout</h1>
       <div className="container">
+        <h3>Produtos</h3>
         {storageCart.length > 0 ? (
           storageCart.map((el, index) => (
             <div className="card d-flex" id={`product-${index}`} key={index}>
@@ -93,8 +93,9 @@ function CheckoutPage() {
           </h3>
         </div>
 
-        <div>
-          <form method="POST" onSubmit={handleSubmit}>
+        <div className="address-content">
+          <h3>Endereço</h3>
+          <form method="POST" onSubmit={handleSubmit} className="address-form">
             <div className="form-group">
               <label htmlFor="name">
                 Rua
@@ -125,13 +126,15 @@ function CheckoutPage() {
                 />
               </label>
             </div>
-            <input
-              type="submit"
-              value="Finalizar Pedido"
-              disabled={!ableToSubmit}
-              data-testid="checkout-finish-btn"
-              className="btn-lg btn-primary fixed-bottom cart-content"
-            />
+            <div className="fixed-bottom cart-content">
+              <input
+                type="submit"
+                value="Finalizar Pedido"
+                disabled={!ableToSubmit}
+                data-testid="checkout-finish-btn"
+                className="btn-lg btn-primary cart-button"
+              />
+            </div>
           </form>
         </div>
       </div>

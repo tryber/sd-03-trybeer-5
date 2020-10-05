@@ -4,10 +4,13 @@ import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsService';
 import formatPrice from '../utils/formatPrice';
-import { getCartFromLocalStorage, getFromLocalStorage } from '../utils/saveToLocalStorage';
+import {
+  getCartFromLocalStorage,
+  getFromLocalStorage,
+} from '../utils/saveToLocalStorage';
 
 function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [totalPrice, setTotalPrice] = useState('0,00');
   const [successMessage, setSuccessMessage] = useState('');
   const user = getFromLocalStorage();
@@ -40,16 +43,16 @@ function ProductsPage() {
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const message = urlParams.get('msg')
+    const message = urlParams.get('msg');
     setSuccessMessage(message);
-  }, [])
+  }, []);
 
-if (!user) return <Redirect to="/login" />;
+  if (!user) return <Redirect to="/login" />;
 
   return (
     <div>
       <span className="center">{successMessage}</span>
-      {products.length > lengthValidation ? (
+      {products && products.length > lengthValidation ? (
         <div className="product-page">
           <ListProductsCards
             products={products}
@@ -58,7 +61,11 @@ if (!user) return <Redirect to="/login" />;
           <CartButton totalPrice={totalPrice} />
         </div>
       ) : (
-        <h1>Loading...</h1>
+        <h1>
+          {products && products.length === 0
+            ? 'Nenhum produto encontrado'
+            : 'Loading...'}
+        </h1>
       )}
     </div>
   );

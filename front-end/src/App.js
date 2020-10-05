@@ -17,13 +17,18 @@ import MenuTop from './components/MenuTop';
 import AdminMenuSideBar from './components/AdminMenuSideBar';
 import ProfilePage from './pages/ProfilePage';
 import ClientOrdersPage from './pages/ClientOrdersPage';
+import ClientOrderDetail from './pages/ClientOrderDetail';
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/orders/:id">
+          <MenuTop pageTitle="Detalhes" />
+          <ClientOrderDetail />
+        </Route>
         <Route path="/orders">
-          <MenuTop pageTitle="Meu Pedidos" datatest="top-title" />
+          <MenuTop pageTitle="Meus Pedidos" />
           <ClientOrdersPage />
         </Route>
         <Route path="/checkout">
