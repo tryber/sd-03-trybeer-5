@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const { connection, connNew } = require('./connection');
 
 const registerSale = async (
   userId,
