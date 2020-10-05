@@ -1,3 +1,6 @@
+// Referência usada para cria a função de formatar data:
+// https://pt.stackoverflow.com/questions/6526/como-formatar-data-no-javascript
+
 const formatDate = (date) => {
   const formatedDate = new Date(date);
   const day = formatedDate.getDate().toString();
