@@ -98,7 +98,7 @@ const getSalesDetailsByID = async (saleId) => {
           productName,
           productPrice,
           productImage,
-        ]
+        ],
       ) => [
         ...acc,
         {
@@ -116,7 +116,7 @@ const getSalesDetailsByID = async (saleId) => {
           productImage,
         },
       ],
-      []
+      [],
     );
 
     return salesResults;
