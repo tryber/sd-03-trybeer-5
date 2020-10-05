@@ -132,7 +132,7 @@ function CheckoutPage() {
                 value="Finalizar Pedido"
                 disabled={!ableToSubmit}
                 data-testid="checkout-finish-btn"
-                className="btn-lg btn-primary cart-button"
+                className="btn btn-lg btn-primary cart-button"
               />
             </div>
           </form>
