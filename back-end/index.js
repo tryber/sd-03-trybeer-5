@@ -14,6 +14,7 @@ const {
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
 const { connection } = require('./models');
+const { getOneOrder } = require('./controllers/salesController');
 
 const PORT = process.env.API_PORT || 3001;
 
@@ -40,6 +41,8 @@ app.get('/admin/orders', validateJWT, getAllOrders);
 app.get('/orders', validateJWT, getAllClientOrders);
 
 app.put('/orders/:id', validateJWT, updateOrderStatus);
+
+app.get('/search/:id', validateJWT, getOneOrder);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 

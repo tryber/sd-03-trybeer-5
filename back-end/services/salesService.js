@@ -37,6 +37,34 @@ const registerSale = async (
   return { message: 'Compra realizada com sucesso!' };
 };
 
+const salesDetailsById = async (saleID) => {
+  try {
+    const sales = await salesModel.getSalesDetailsByID(saleID);
+    const salesData = sales.length ? { saleID: sales[0].saleID,
+      userID: sales[0].userID,
+      orderValue: sales[0].orderValue,
+      deliveryAddress: sales[0].deliveryAddress,
+      deliveryNumber: sales[0].deliveryNumber,
+      saleDate: sales[0].saleDate,
+      status: sales[0].status,
+      products: sales.map(({ soldProductID,
+        soldQuantity,
+        productName,
+        productPrice,
+        productImage }) => ({
+        soldProductID,
+        soldQuantity,
+        productName,
+        productPrice,
+        productImage,
+      })) } : {};
+
+    return { ...salesData };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const getAllOrders = async () => salesModel.getAllOrders();
 
 const getAllClientOrders = async (id) => salesModel.getAllClientOrders(id);
@@ -47,5 +75,6 @@ module.exports = {
   registerSale,
   getAllOrders,
   getAllClientOrders,
+  salesDetailsById,
   updateOrderStatus,
 };
