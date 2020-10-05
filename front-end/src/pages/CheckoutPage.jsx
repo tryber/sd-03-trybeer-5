@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { checkOut } from '../services/checkoutService';
 
 function CheckoutPage() {
@@ -21,17 +21,27 @@ function CheckoutPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     const { id, token } = storageUser;
-    const delivery = {address: rua, number: numeroCasa};
-    const saleDate = new Date().toISOString().replace('T', ' ').replace('Z', '');
-    const status = "Pendente";
+    const delivery = { address: rua, number: numeroCasa };
+    const saleDate = new Date()
+      .toISOString()
+      .replace('T', ' ')
+      .replace('Z', '');
+    const status = 'Pendente';
 
-    const checkoutResponse = await checkOut(token, id, parseFloat(orderTotalValue.replace(',', '.')), delivery, saleDate, status, storageCart);
+    const checkoutResponse = await checkOut(
+      token,
+      id,
+      parseFloat(orderTotalValue.replace(',', '.')),
+      delivery,
+      saleDate,
+      status,
+      storageCart
+    );
 
-    if(!checkoutResponse.err) {
+    if (!checkoutResponse.err) {
       localStorage.removeItem('cart');
       window.location.href = '/products?msg=Compra realizada com sucesso!';
     }
-
   }
 
   function deleteProduct(index) {
@@ -49,52 +59,64 @@ function CheckoutPage() {
   return (
     <div className="CheckoutPage">
       <div className="container">
-        <h3>Produtos</h3>
+        <h3 className="checkout-title">Produtos</h3>
         {storageCart.length > 0 ? (
           storageCart.map((el, index) => (
-            <div className="card d-flex" id={`product-${index}`} key={index}>
-              <span
-                className="amount"
-                data-testid={`${index}-product-qtd-input`}
-              >
-                {el.amount}
-              </span>
-              <h4 className="name" data-testid={`${index}-product-name`}>
-                {el.name}
-              </h4>
-              <p
-                className="total-product-price"
-                data-testid={`${index}-product-total-value`}
-              >
-                R$ {(el.price * el.amount).toFixed(2).toString().replace('.', ',')}
-              </p>
-              <p
-                className="unit-price"
-                data-testid={`${index}-product-unit-price`}
-              >
-                (R$ {el.price.toFixed(2).toString().replace('.', ',')} un)
-              </p>
-              <button
-                data-testid={`${index}-removal-button`}
-                onClick={() => deleteProduct(index)}
-              >
-                X
-              </button>
+            <div className="card checkout-card" key={el.id}>
+              <div className="card-body" id={`product-${index}`} key={index}>
+                <h4
+                  className="name card-title"
+                  data-testid={`${index}-product-name`}
+                >
+                  {el.name}
+                </h4>
+                <p
+                  className="amount card-text"
+                  data-testid={`${index}-product-qtd-input`}
+                >
+                  Quantidade: {el.amount}
+                </p>
+                <p
+                  className="total-product-price card-text"
+                  data-testid={`${index}-product-total-value`}
+                >
+                  Total: R${' '}
+                  {(el.price * el.amount)
+                    .toFixed(2)
+                    .toString()
+                    .replace('.', ',')}
+                </p>
+                <p
+                  className="unit-price card-text"
+                  data-testid={`${index}-product-unit-price`}
+                >
+                  Unidade: R$ {el.price.toFixed(2).toString().replace('.', ',')}
+                </p>
+                <button
+                  className="btn btn-primary"
+                  data-testid={`${index}-removal-button`}
+                  onClick={() => deleteProduct(index)}
+                >
+                  X
+                </button>
+              </div>
             </div>
           ))
         ) : (
-          <h3>Não há produtos no carrinho</h3>
+          <h3 className="checkout-text">Não há produtos no carrinho</h3>
         )}
 
         <div className="float-right">
           <h3>
             Total:
-            <span data-testid="order-total-value">R$ {orderTotalValue}</span>
+            <span className="checkout-text" data-testid="order-total-value">
+              R$ {orderTotalValue}
+            </span>
           </h3>
         </div>
 
         <div className="address-content">
-          <h3>Endereço</h3>
+          <h3 className="checkout-title">Endereço</h3>
           <form method="POST" onSubmit={handleSubmit} className="address-form">
             <div className="form-group">
               <label htmlFor="name">
