@@ -33,7 +33,60 @@ const registerProductSold = async (saleId, productId, quantity) => connection().
   .values(saleId, productId, quantity)
   .execute());
 
+const getAllOrders = async () => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select([
+      'id',
+      'total_price',
+      'delivery_address',
+      'delivery_number',
+      'status',
+    ])
+    .execute())
+  .then((result) => result.fetchAll())
+  .then((orders) => orders.map(
+    ([
+      orderNumber,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status,
+    ]) => ({
+      orderNumber,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status,
+    }),
+  ));
+
+const getAllClientOrders = async (id) => connection()
+  .then((db) => db
+    .getTable('sales')
+    .select(['id', 'total_price', 'sale_date'])
+    .where('user_id = :id')
+    .bind('id', id)
+    .execute())
+  .then((results) => results.fetchAll())
+  .then((orders) => orders.map(([orderNumber, totalPrice, saleDate]) => ({
+    orderNumber,
+    totalPrice,
+    saleDate,
+  })));
+
+const updateOrderStatus = async (id) => connection().then((db) => db
+  .getTable('sales')
+  .update()
+  .set('status', 'Entregue')
+  .where('id = :id')
+  .bind('id', id)
+  .execute());
+
 module.exports = {
   registerSale,
   registerProductSold,
+  getAllOrders,
+  getAllClientOrders,
+  updateOrderStatus,
 };
