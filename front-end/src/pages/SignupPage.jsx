@@ -74,8 +74,8 @@ function SignupPage() {
   if (redirectTo !== '/') return <Redirect to={redirectTo} />;
 
   return (
-    <div className="card">
-      <h1 className="text-center">Trybeer - Registro de novo Usuário</h1>
+    <div className="main-page card">
+      <h1 className="text-center">Trybeer - Signup</h1>
       <div className="d-flex justify-content-center align-items-center">
         <form method="POST" onSubmit={handleSubmit}>
           <div className="form-group">

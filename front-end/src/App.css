@@ -135,6 +135,7 @@
 .cards-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 4rem;
 }
 
@@ -161,4 +162,35 @@
 .cart-button {
   width: 25rem;
   margin: 20px 0;
+}
+
+/* Checkout Page */
+
+.address-content {
+  margin: 4rem 0 8rem;
+}
+
+.checkout-card {
+  margin: 20px 0;
+}
+
+.checkout-text {
+  margin: 20px;
+}
+
+.checkout-title {
+  margin: 20px 0;
+}
+
+/* Client Profile Page */
+
+.message {
+  margin-top: 1rem;
+}
+
+/* All Pages */
+
+.main-page {
+  margin: 100px 300px 0;
+  padding: 20px;
 }
