@@ -85,12 +85,12 @@ function CheckoutPage() {
                     .toFixed(2)
                     .toString()
                     .replace('.', ',')}
-                </p>
-                <p
-                  className="unit-price card-text"
-                  data-testid={`${index}-product-unit-price`}
-                >
-                  Unidade: R$ {el.price.toFixed(2).toString().replace('.', ',')}
+                  <span
+                    className="unit-price card-text"
+                    data-testid={`${index}-product-unit-price`}
+                  >
+                    {` (R$ ${el.price.toFixed(2).toString().replace('.', ',')} un)`}
+                  </span>
                 </p>
                 <button
                   className="btn btn-primary"
@@ -103,7 +103,7 @@ function CheckoutPage() {
             </div>
           ))
         ) : (
-          <h3 className="checkout-text">Não há produtos no carrinho</h3>
+          <h3 className="text-center">Não há produtos no carrinho</h3>
         )}
 
         <div className="float-right">

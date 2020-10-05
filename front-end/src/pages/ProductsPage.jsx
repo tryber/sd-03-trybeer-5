@@ -61,9 +61,9 @@ function ProductsPage() {
           <CartButton totalPrice={totalPrice} />
         </div>
       ) : (
-        <h1>
+        <h1 className="text-center">
           {products && products.length === 0
-            ? 'Nenhum produto encontrado'
+            ? 'Nenhum produto disponível'
             : 'Loading...'}
         </h1>
       )}
