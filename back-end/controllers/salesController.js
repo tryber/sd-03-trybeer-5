@@ -22,7 +22,7 @@ const getAllOrders = rescue(async (_req, res) => {
   const orders = await salesService.getAllOrders();
 
   return res.status(200).json(orders);
- });
+});
 
 const getAllClientOrders = rescue(async (req, res) => {
   const { id } = req.query;
@@ -30,7 +30,7 @@ const getAllClientOrders = rescue(async (req, res) => {
   const orders = await salesService.getAllClientOrders(id);
 
   return res.status(200).json(orders);
- });
+});
 
 const updateOrderStatus = rescue(async (req, res) => {
   const { id } = req.params;
