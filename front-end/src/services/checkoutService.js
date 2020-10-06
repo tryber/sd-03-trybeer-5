@@ -25,4 +25,4 @@ const checkOut = async (
   return response.json();
 };
 
-module.exports = { checkOut };
+export default checkOut;

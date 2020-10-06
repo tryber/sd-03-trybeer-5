@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MenuTop from '../components/MenuTop';
-import { checkOut } from '../services/checkoutService';
+import checkOut from '../services/checkoutService';
 
 function CheckoutPage() {
   const [orderTotalValue, setOrderTotalValue] = useState('0,00');

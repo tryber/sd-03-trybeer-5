@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path="/admin/orders" component={ AdminOrders } />
+        <Route path="/admin/orders" component={ AdminOrders } />
         <Route path="/admin/profile" component={ AdminProfile } />
         <Route path="/orders/:id" component={ ClientOrderDetail } />
         <Route path="/orders" component={ ClientOrdersPage } />

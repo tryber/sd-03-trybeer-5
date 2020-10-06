@@ -7,7 +7,6 @@ function AdminOrders() {
       <AdminMenuSideBar />
       <div className="main-page flex-lg-fill">
         <h1>Tela de Pedidos do Admin</h1>
-      </div>
     </div>
   );
 }

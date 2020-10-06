@@ -25,7 +25,7 @@ const getOneOrder = rescue(async (req, res) => {
 
     return res.status(200).json({ sale: salesData });
   } catch (error) {
-    return res.json({ error });
+    return res.json({ error: error.message });
   }
 });
 
@@ -53,8 +53,8 @@ const updateOrderStatus = rescue(async (req, res) => {
 
 module.exports = {
   registerSale,
-  getAllOrders,
   getOneOrder,
+  getAllOrders,
   getAllClientOrders,
   updateOrderStatus,
 };
