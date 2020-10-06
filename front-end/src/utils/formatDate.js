@@ -10,4 +10,4 @@ const formatDate = (date) => {
   return `${formatedDay}/${formatedMonth}`;
 };
 
-module.exports = formatDate;
+export default formatDate;

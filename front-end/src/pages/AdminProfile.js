@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import AdminMenuSideBar from '../components/AdminMenuSideBar';
 
 function AdminProfile() {
   const [loggedName, setLoggedName] = useState('');
@@ -14,6 +15,7 @@ function AdminProfile() {
 
   return (
     <div>
+      <AdminMenuSideBar />
       <h1>Perfil</h1>
       <h5 data-testid="profile-name">{`Nome: ${loggedName}`}</h5>
       <h5 data-testid="profile-email">{`Email: ${loggedEmail}`}</h5>

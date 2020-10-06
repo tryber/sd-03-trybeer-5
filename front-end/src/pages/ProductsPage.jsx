@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import MenuTop from '../components/MenuTop';
 import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsService';
@@ -51,6 +52,7 @@ function ProductsPage() {
 
   return (
     <div>
+      <MenuTop />
       <span className="center">{successMessage}</span>
       {products && products.length > lengthValidation ? (
         <div className="product-page">
