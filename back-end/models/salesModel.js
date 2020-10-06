@@ -76,11 +76,10 @@ const getAllClientOrders = async (id) => connection()
   })));
 
 const getSalesDetailsByID = async (saleId) => {
-  const dbase = await connection();
   try {
     const joinQuery = `SELECT sales.*, sproducts.product_id AS sold_product_id, sproducts.quantity AS sold_quantity, products.name AS product_name, products.price AS product_price, products.url_image AS product_image FROM Trybeer.sales_products AS sproducts INNER JOIN Trybeer.sales AS sales ON sproducts.sale_id = sales.id AND sales.id = ${saleId} INNER JOIN Trybeer.products AS products ON sproducts.product_id = products.id ORDER BY sales.id`;
 
-    const searchQuery = await dbase(joinQuery);
+    const searchQuery = await connNew(joinQuery);
 
     const results = await searchQuery.fetchAll();
     const salesResults = results.reduce(

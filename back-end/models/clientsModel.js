@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const { connection } = require('./connection');
 
 const updateClientName = async (name, email) => connection()
   .then((db) => db
