@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import AdminMenuSideBar from '../components/AdminMenuSideBar';
 
 function AdminProfile() {
   const [loggedName, setLoggedName] = useState('');
@@ -13,10 +14,38 @@ function AdminProfile() {
   }, []);
 
   return (
-    <div>
-      <h1>Perfil</h1>
-      <h5 data-testid="profile-name">{`Nome: ${loggedName}`}</h5>
-      <h5 data-testid="profile-email">{`Email: ${loggedEmail}`}</h5>
+    <div className="d-flex">
+      <AdminMenuSideBar />
+      <div className="main-page flex-lg-fill">
+        <form>
+          <fieldset>
+            <div className="mb-3">
+              <label className="form-label">Name:</label>
+              <input
+                data-testid="profile-name"
+                type="text"
+                id="name"
+                name="name"
+                className="form-control"
+                placeholder={loggedName}
+                readOnly
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email:</label>
+              <input
+                data-testid="profile-email"
+                type="email"
+                id="email"
+                name="email"
+                className="form-control"
+                placeholder={loggedEmail}
+                readOnly
+              />
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 }
