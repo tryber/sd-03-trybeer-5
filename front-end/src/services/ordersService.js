@@ -6,6 +6,14 @@ export const getAllClientOrders = async (id, token) => {
   return orders;
 };
 
+export const getAllAdminOrders = async (token) => {
+  const response = await fetch('http://localhost:3001/admin/orders', {
+    headers: { authorization: token },
+  });
+  const orders = await response.json();
+  return orders;
+};
+
 export const getOneOrder = async (id, token) => fetch(`http://localhost:3001/search/${id}`, {
   headers: { authorization: token },
 })
