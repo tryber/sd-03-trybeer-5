@@ -29,7 +29,7 @@ const ProfilePage = () => {
   return (
     <div>
       <MenuTop pageTitle="Meu perfil" datatest="top-title" />
-      <div className="main-page">
+      <div id="wrapper" className="main-page">
         <form>
           <fieldset aria-label="Disabled fieldset example">
             <div className="mb-3">

@@ -60,7 +60,7 @@ function CheckoutPage() {
   return (
     <div>
       <MenuTop pageTitle="Finalizar Pedido" />
-      <div className="container">
+      <div id="wrapper" className="container">
         <h3 className="checkout-title">Produtos</h3>
         {storageCart.length > 0 ? (
           storageCart.map((el, index) => (

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 function MenuTop({ pageTitle, dataTest }) {
   return (
     <div className="MenuTop">
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark fixed-top">
         <div className="container-fluid">
           <button
+            id="menuTopToggle"
             data-testid="top-hamburguer"
-            className="navbar-toggler"
+            className="navbar-toggler collapsed"
             type="button"
             data-toggle="collapse"
             data-target="#navbarToggleExternalContent"
@@ -22,9 +23,9 @@ function MenuTop({ pageTitle, dataTest }) {
         </div>
       </nav>
 
-      <nav id="navbarToggleExternalContent" data-testid={ dataTest } className="collapse side-menu-container">
-        <div className="">
-          <ul className="nav flex-column">
+      <nav id="navbarToggleExternalContent" data-testid={ dataTest } className="navbar-collapse collapse side-menu-container">
+        <div id="sidebar-wrapper">
+          <ul className="nav sidebar-nav flex-column">
             <li className="nav-item">
               <a className="nav-link" data-testid="side-menu-item-products" href="/products">Produtos</a>
             </li>

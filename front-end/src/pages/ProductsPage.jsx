@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import MenuTop from '../components/MenuTop';
-import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsService';
 import formatPrice from '../utils/formatPrice';
@@ -55,12 +54,12 @@ function ProductsPage() {
       <MenuTop />
       <p className="text-center">{successMessage}</p>
       {products && products.length > lengthValidation ? (
-        <div className="product-page">
+        <div id="wrapper" className="product-page">
           <ListProductsCards
             products={products}
             getTotalPrice={getTotalPrice}
+            totalPrice={totalPrice} 
           />
-          <CartButton totalPrice={totalPrice} />
         </div>
       ) : (
         <h1 className="text-center">

@@ -23,9 +23,9 @@ function ClientOrderDetail({ match }) {
   if (!user) return <Redirect to="/login" />;
 
   return (
-    <div className="d-flex">
+    <div>
       <MenuTop pageTitle="Detalhes de Pedido" />
-      <div className="container">
+      <div id="wrapper" className="container">
         {order && order.products ? (
           <div className="card checkout-card">
             <div className="card-header">
