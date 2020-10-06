@@ -21,27 +21,15 @@ function AdminProfile() {
           <fieldset>
             <div className="mb-3">
               <p className="form-label">Name:</p>
-              <input
-                data-testid="profile-name"
-                type="text"
-                id="adminName"
-                name="name"
-                className="form-control"
-                placeholder={ loggedName }
-                readOnly
-              />
+              <p data-testid="profile-name" className="form-control">
+                {loggedName}
+              </p>
             </div>
             <div className="mb-3">
               <p className="form-label">Email:</p>
-              <input
-                data-testid="profile-email"
-                type="email"
-                id="adminEmail"
-                name="email"
-                className="form-control"
-                placeholder={ loggedEmail }
-                readOnly
-              />
+              <p data-testid="profile-email" className="form-control">
+                {loggedEmail}
+              </p>
             </div>
           </fieldset>
         </form>

@@ -4,7 +4,7 @@ import OrderCard from './OrderCard';
 
 function ListOrdersCards({ orders }) {
   return (
-    <div className="cards-list">
+    <div className="orders-list">
       {orders.map((order, index) => (
         <OrderCard order={order} index={index} key={order.orderNumber} />
       ))}
