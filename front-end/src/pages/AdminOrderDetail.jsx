@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import MenuTop from '../components/MenuTop';
+import AdminMenuSideBar from '../components/AdminMenuSideBar';
 import { getOneOrder, updateOrderStatus } from '../services/ordersService';
 import formatPrice from '../utils/formatPrice';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
@@ -27,7 +27,7 @@ function ClientOrderDetail({ match }) {
   if (!user) return <Redirect to="/login" />;
   return (
     <div>
-      <MenuTop pageTitle="Detalhes de Pedido" />
+      <AdminMenuSideBar />
       <div className="container">
         {order && order.products ? (
           <div className="card checkout-card">
@@ -47,6 +47,7 @@ function ClientOrderDetail({ match }) {
                     <span>Quantidade: </span> <span data-testid={`${index}-product-qtd`}>{soldQuantity}</span>
                     </div>
                     <h3 data-testid={`${index}-product-name`}>{productName}</h3>
+                <h3 data-testid={`${index}-order-unit-price`}>(R$ {(productPrice).toFixed(2).replace('.',',')})</h3>
                     <h6 data-testid={`${index}-product-total-value`}>R$ {(productPrice * soldQuantity).toFixed(2).replace('.',',')}</h6>
                     </div>
                   </li>

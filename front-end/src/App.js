@@ -22,16 +22,17 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route exact path='/admin/orders/:id' component={ AdminOrderDetail } />
         <Route path="/admin/orders" component={ AdminOrders } />
         <Route path="/admin/profile" component={ AdminProfile } />
         <Route path="/orders/:id" component={ ClientOrderDetail } />
         <Route path="/orders" component={ ClientOrdersPage } />
         <Route path="/profile" component={ ProfilePage } />
-        <Route path="/checkout" component={ CheckoutPage } />
+        <Route path="/checkout" component={ CheckoutPage } />z
         <Route path="/register" component={ SignupPage } />
         <Route path="/products" component={ ProductsPage } />
         <Route path="/login" component={ LoginPage } />
-        <Route path='/admin/order/:id' component={ AdminOrderDetail } />
+        
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>

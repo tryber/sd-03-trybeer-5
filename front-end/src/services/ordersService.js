@@ -23,9 +23,9 @@ export const getOneOrder = async (id, token) => fetch(`http://localhost:3001/sea
 export const updateOrderStatus = async (id, token) => {
   console.log(id, token);
   const response = await fetch(`http://localhost:3001/orders/${id}`, {
-  method: 'PUT',
-  headers: { authorization: token },
-})
+    method: "PUT",
+    headers: { authorization: token },
+  });
   const order = await response.json();
   return order;
 };
