@@ -13,7 +13,7 @@ const {
   updateOrderStatus,
 } = require('./controllers');
 const { validateJWT } = require('./middlewares');
-const { connection } = require('./models');
+const { connection } = require('./models/connection');
 const { getOneOrder } = require('./controllers/salesController');
 
 const PORT = process.env.API_PORT || 3001;
