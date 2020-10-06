@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 function ListProductsCards({ products, getTotalPrice }) {
   return (
-    <div className="cards-list">
+    <div className="orders-list">
       {products.map((product, index) => (
         <ProductCard
           product={product}

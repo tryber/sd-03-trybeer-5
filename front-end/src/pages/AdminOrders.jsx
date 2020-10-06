@@ -21,7 +21,7 @@ function AdminOrders() {
   return (
     <div className="d-flex">
       <AdminMenuSideBar />
-      <div className="cards-list">
+      <div className="orders-list">
         {orders && orders.map(
           (
             { orderNumber, totalPrice, deliveryAddress, deliveryNumber, status },

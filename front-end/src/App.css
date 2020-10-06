@@ -199,6 +199,14 @@
   padding: 2vh;
 }
 
+/* Orders List */
+
+.orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 /* All Pages */
 
 .main-page {

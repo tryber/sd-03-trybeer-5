@@ -20,7 +20,7 @@ function AdminProfile() {
         <form>
           <fieldset>
             <div className="mb-3">
-              <label className="form-label" htmlFor="adminName">Name:</label>
+              <p className="form-label">Name:</p>
               <input
                 data-testid="profile-name"
                 type="text"
@@ -32,7 +32,7 @@ function AdminProfile() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label" htmlFor="adminEmail">Email:</label>
+              <p className="form-label">Email:</p>
               <input
                 data-testid="profile-email"
                 type="email"
