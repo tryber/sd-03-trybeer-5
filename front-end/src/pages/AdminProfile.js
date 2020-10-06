@@ -20,26 +20,26 @@ function AdminProfile() {
         <form>
           <fieldset>
             <div className="mb-3">
-              <label className="form-label">Name:</label>
+              <label className="form-label" htmlFor="adminName">Name:</label>
               <input
                 data-testid="profile-name"
                 type="text"
-                id="name"
+                id="adminName"
                 name="name"
                 className="form-control"
-                placeholder={loggedName}
+                placeholder={ loggedName }
                 readOnly
               />
             </div>
             <div className="mb-3">
-              <label className="form-label">Email:</label>
+              <label className="form-label" htmlFor="adminEmail">Email:</label>
               <input
                 data-testid="profile-email"
                 type="email"
-                id="email"
+                id="adminEmail"
                 name="email"
                 className="form-control"
-                placeholder={loggedEmail}
+                placeholder={ loggedEmail }
                 readOnly
               />
             </div>
