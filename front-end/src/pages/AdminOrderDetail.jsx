@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import MenuTop from '../components/MenuTop';
-import { getOneOrder } from '../services/ordersService';
-import formatDate from '../utils/formatDate';
+import { getOneOrder, updateOrderStatus } from '../services/ordersService';
 import formatPrice from '../utils/formatPrice';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
 
-function AdminOrderDetail({ match }) {
+function ClientOrderDetail({ match }) {
   const [order, setOrder] = useState(null);
   const user = getFromLocalStorage();
 
   const token = user ? user.token : '';
   const { id } = match.params;
+
+  const alterStatus = async (id) => {
+    const resp = await updateOrderStatus(id, token);
+    setOrder(resp);
+  };
 
   const fetchOrder = async (id, token) =>
     getOneOrder(id, token).then((order) => setOrder(order.sale));
@@ -21,7 +25,6 @@ function AdminOrderDetail({ match }) {
   }, []);
 
   if (!user) return <Redirect to="/login" />;
-
   return (
     <div>
       <MenuTop pageTitle="Detalhes de Pedido" />
@@ -29,13 +32,8 @@ function AdminOrderDetail({ match }) {
         {order && order.products ? (
           <div className="card checkout-card">
             <div className="card-header">
-              <h3
-                className="card-text"
-                data-testid="order-number"
-              >{`Pedido ${order.saleID}`}</h3>
-              <p className="card-text" data-testid="order-date">
-                {formatDate(order.saleDate)}
-              </p>
+              <h1 data-testid='order-number'>Pedido {order.saleID ? order.saleID : ''}
+                <span data-testid='order-status'> - {order.status ? order.status : ''}</span></h1>
             </div>
             <ul className="list-group list-group-flush">
               {order.products && order.products.map(
@@ -45,17 +43,11 @@ function AdminOrderDetail({ match }) {
                 ) => (
                   <li className="list-group-item" key={soldProductID}>
                     <div>
-                      <h4 data-testid={`${index}-product-name`}>
-                        {productName}
-                      </h4>
-                      <p
-                        data-testid={`${index}-product-qtd`}
-                      >{`Quantidade: ${soldQuantity}`}</p>
-                      <p data-testid={`${index}-product-total-value`}>
-                        {`Total do produto: R$ ${formatPrice(
-                          productPrice * soldQuantity
-                        )}`}
-                      </p>
+                      <div>
+                    <span>Quantidade: </span> <span data-testid={`${index}-product-qtd`}>{soldQuantity}</span>
+                    </div>
+                    <h3 data-testid={`${index}-product-name`}>{productName}</h3>
+                    <h6 data-testid={`${index}-product-total-value`}>R$ {(productPrice * soldQuantity).toFixed(2).replace('.',',')}</h6>
                     </div>
                   </li>
                 )
@@ -66,6 +58,7 @@ function AdminOrderDetail({ match }) {
                 {`Total: R$ ${order.orderValue ? formatPrice(order.orderValue): '0,00'}`}
               </h3>
             </div>
+            {order.status === "Pendente" ? <button onClick={() => alterStatus(id)} data-testid="mark-as-delivered-btn">Marcar como entregue</button> : ''}
           </div>
         ) : (
           <h1 className="text-center">{order ? 'O pedido não foi encontrado' : 'Loading...'}</h1>
@@ -75,4 +68,4 @@ function AdminOrderDetail({ match }) {
   );
 }
 
-export default AdminOrderDetail;
+export default ClientOrderDetail;
