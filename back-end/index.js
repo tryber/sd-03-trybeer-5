@@ -46,8 +46,6 @@ app.get('/search/:id', validateJWT, getOneOrder);
 
 app.listen(PORT, () => console.log(`Listen on ${PORT}`));
 
-connection().then(() =>
-  console.log(
-    `Banco conectado via: ${process.env.MYSQL_USER}@${process.env.HOSTNAME};`
-  )
-);
+connection().then(() => console.log(
+  `Banco conectado via: ${process.env.MYSQL_USER}@${process.env.HOSTNAME};`,
+));

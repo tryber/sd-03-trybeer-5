@@ -22,7 +22,7 @@ function ClientOrderDetail() {
 
   return (
     <div className="container">
-      {console.log(order)}
+      {console.log(order.sale)}
       <div className="card checkout-card">
         <div className="card-header">
           <h3
