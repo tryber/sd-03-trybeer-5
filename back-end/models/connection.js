@@ -31,5 +31,4 @@ const connNew = async (query) => (
     })
 );
     
-
 module.exports = { connection, connNew };
