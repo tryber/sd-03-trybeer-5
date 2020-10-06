@@ -16,6 +16,7 @@ import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import ClientOrdersPage from './pages/ClientOrdersPage';
 import ClientOrderDetail from './pages/ClientOrderDetail';
+import AdminOrderDetail from './pages/AdminOrderDetail';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/register" component={ SignupPage } />
         <Route path="/products" component={ ProductsPage } />
         <Route path="/login" component={ LoginPage } />
+        <Route path='/admin/order/:id' component={ AdminOrderDetail } />
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
