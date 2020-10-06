@@ -6,10 +6,8 @@ export const getAllClientOrders = async (id, token) => {
   return orders;
 };
 
-export const getOneOrder = async (id, token) => {
-  const response = await fetch(`http://localhost:3001/search/${id}`, {
-    headers: { authorization: token },
-  });
-  const order = await response.json();
-  return order;
-};
+export const getOneOrder = async (id, token) => fetch(`http://localhost:3001/search/${id}`, {
+  headers: { authorization: token },
+})
+  .then((response) => response.json())
+  .then((order) => order);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import MenuTop from '../components/MenuTop';
 import checkOut from '../services/checkoutService';
 
 function CheckoutPage() {
@@ -58,6 +59,7 @@ function CheckoutPage() {
 
   return (
     <div className="CheckoutPage">
+      <MenuTop pageTitle="Finalizar Pedido" />
       <div className="container">
         <h3 className="checkout-title">Produtos</h3>
         {storageCart.length > 0 ? (
