@@ -6,8 +6,8 @@ function AdminMenuSideBar() {
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <h1>TryBeer</h1>
-          <li className="nav-item" data-testid="side-menu-item-orders">
-            <a className="nav-link active" href="/admin/orders">
+          <li className="nav-item">
+            <a className="nav-link active" data-testid="side-menu-item-orders" href="/admin/orders">
               Pedidos
             </a>
           </li>
