@@ -8,7 +8,6 @@ import formatPrice from '../utils/formatPrice';
 function AdminOrders() {
   const [orders, setOrders] = useState(null);
   const user = getFromLocalStorage();
-  const lengthValidation = 0;
 
   const token = user ? user.token : '';
 
@@ -21,7 +20,7 @@ function AdminOrders() {
   return (
     <div className="d-flex">
       <AdminMenuSideBar />
-      <div className="orders-list">
+      <div className="orders-list container">
         {orders && orders.map(
           (
             { orderNumber, totalPrice, deliveryAddress, deliveryNumber, status },

@@ -23,7 +23,7 @@ function ClientOrderDetail({ match }) {
   if (!user) return <Redirect to="/login" />;
 
   return (
-    <div>
+    <div className="d-flex">
       <MenuTop pageTitle="Detalhes de Pedido" />
       <div className="container">
         {order && order.products ? (

@@ -58,7 +58,7 @@ function CheckoutPage() {
   }
 
   return (
-    <div className="CheckoutPage">
+    <div>
       <MenuTop pageTitle="Finalizar Pedido" />
       <div className="container">
         <h3 className="checkout-title">Produtos</h3>

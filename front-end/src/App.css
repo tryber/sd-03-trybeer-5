@@ -195,13 +195,24 @@
 }
 
 .admin-sidebar {
+  background-color: #343a40!important;
+  color: #212529;
   height: 100vh;
   padding: 2vh;
+}
+
+.admin-sidebar a {
+  color: #999999;
+}
+
+.admin-sidebar a:hover {
+  color: #666666;
 }
 
 /* Orders List */
 
 .orders-list {
+  align-content: start;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -213,4 +224,10 @@
   margin: 6vh 12vh 0;
   padding: 2vh;
   justify-content: center;
+}
+
+/* Side Menu Top*/
+
+.side-menutop {
+  height: 100vh;
 }
