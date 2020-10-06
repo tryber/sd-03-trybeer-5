@@ -7,4 +7,4 @@ const formatPrice = (price) => {
   return newPrice;
 };
 
-module.exports = formatPrice;
+export default formatPrice;

@@ -24,7 +24,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/orders/:id">
-          <MenuTop pageTitle="Detalhes" />
+          <MenuTop pageTitle="Detalhes de Pedido" />
           <ClientOrderDetail />
         </Route>
         <Route path="/orders">

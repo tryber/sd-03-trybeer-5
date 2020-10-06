@@ -1,4 +1,4 @@
-const login = async (values) => {
+export const login = async (values) => {
   const { email, password } = values;
   const response = await fetch('http://localhost:3001/login', {
     method: 'POST',
@@ -10,7 +10,7 @@ const login = async (values) => {
   return response.json();
 };
 
-const register = async (name, email, password, seller) => {
+export const register = async (name, email, password, seller) => {
   const response = await fetch('http://localhost:3001/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ const register = async (name, email, password, seller) => {
   return response.json();
 };
 
-const changeClientName = async (obj, token) => {
+export const changeClientName = async (obj, token) => {
   const { name, email } = obj;
   const response = await fetch('http://localhost:3001/update-client-name', {
     method: 'PUT',
@@ -36,5 +36,3 @@ const changeClientName = async (obj, token) => {
   });
   return response.json();
 };
-
-module.exports = { login, register, changeClientName };

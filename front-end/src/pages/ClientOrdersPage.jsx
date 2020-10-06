@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import getAllClientOrders from '../services/ordersService';
+import { getAllClientOrders } from '../services/ordersService';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
 import ListOrdersCards from '../components/ListOrdersCards';
 
