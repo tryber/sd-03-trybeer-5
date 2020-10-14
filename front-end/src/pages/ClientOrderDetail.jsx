@@ -25,7 +25,7 @@ function ClientOrderDetail({ match }) {
   return (
     <div>
       <MenuTop pageTitle="Detalhes de Pedido" />
-      <div id="wrapper" className="container">
+      <div id="wrapper" className="product-page">
         {order && order.products ? (
           <div className="card checkout-card">
             <div className="card-header">

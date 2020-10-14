@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function CartButton({ totalPrice }) {
   return (
-    <div id="cartButton" className="fixed-bottom cart-content">
+    <div id="cartButton" className="fixed-bottom cart-content" style={{background: "transparent"}}>
       <a href="/checkout">
         <button
           type="button"

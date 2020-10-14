@@ -8,6 +8,7 @@ import {
   getCartFromLocalStorage,
   getFromLocalStorage,
 } from '../utils/saveToLocalStorage';
+import Sidebar from '../components/Sidebar.jsx';
 
 function ProductsPage() {
   const [products, setProducts] = useState(null);
@@ -52,22 +53,27 @@ function ProductsPage() {
   return (
     <div>
       <MenuTop />
-      <p className="text-center">{successMessage}</p>
-      {products && products.length > lengthValidation ? (
-        <div id="wrapper" className="product-page">
-          <ListProductsCards
-            products={products}
-            getTotalPrice={getTotalPrice}
-            totalPrice={totalPrice} 
-          />
+      <div className="container-fluid">
+        <div className="row">
+          <Sidebar />
+          <p className="text-center">{successMessage}</p>
+          {products && products.length > lengthValidation ? (
+            <div id="wrapper" className="product-page">
+              <ListProductsCards
+                products={products}
+                getTotalPrice={getTotalPrice}
+                totalPrice={totalPrice} 
+              />
+            </div>
+          ) : (
+            <h1 className="text-center">
+              {products && products.length === 0
+                ? 'Nenhum produto disponível'
+                : 'Loading...'}
+            </h1>
+          )}
         </div>
-      ) : (
-        <h1 className="text-center">
-          {products && products.length === 0
-            ? 'Nenhum produto disponível'
-            : 'Loading...'}
-        </h1>
-      )}
+      </div>
     </div>
   );
 }

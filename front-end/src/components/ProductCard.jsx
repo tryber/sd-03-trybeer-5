@@ -58,7 +58,7 @@ function ProductCard({ product, index, getTotalPrice }) {
   }, [amount]);
 
   return (
-    <div className="card product-card">
+    <div className="card product-card" style={{background: "#FCE694", border: "none"}}>
       <img
         className="card-img-top img-card"
         data-testid={`${index}-product-img`}
@@ -74,7 +74,7 @@ function ProductCard({ product, index, getTotalPrice }) {
           data-testid={`${index}-product-price`}
         >{`R$ ${formatPrice(price)}`}</p>
         <button
-          className="btn btn-primary"
+          className="btn btn-custom"
           data-testid={`${index}-product-plus`}
           type="button"
           onClick={(event) => updateProductAmount(event)}
@@ -88,7 +88,7 @@ function ProductCard({ product, index, getTotalPrice }) {
           {amount}
         </span>
         <button
-          className="btn btn-primary"
+          className="btn btn-custom"
           data-testid={`${index}-product-minus`}
           type="button"
           onClick={(event) => updateProductAmount(event)}

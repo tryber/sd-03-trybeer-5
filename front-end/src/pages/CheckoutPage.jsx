@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuTop from '../components/MenuTop';
 import checkOut from '../services/checkoutService';
+import Sidebar from '../components/Sidebar.jsx';
 
 function CheckoutPage() {
   const [orderTotalValue, setOrderTotalValue] = useState('0,00');
@@ -60,8 +61,10 @@ function CheckoutPage() {
   return (
     <div>
       <MenuTop pageTitle="Finalizar Pedido" />
+      <Sidebar/>
       <div id="wrapper" className="container">
-        <h3 className="checkout-title">Produtos</h3>
+        <h3 className="checkout-title" style={{marginTop: "6rem"}}>Produtos</h3>
+        <div className="checkoutOrdersList">
         {storageCart.length > 0 ? (
           storageCart.map((el, index) => (
             <div className="card checkout-card" key={el.id}>
@@ -94,8 +97,10 @@ function CheckoutPage() {
                     {` (R$ ${el.price.toFixed(2).toString().replace('.', ',')} un)`}
                   </span>
                 </p>
+              </div>
+              <div>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-custom"
                   data-testid={`${index}-removal-button`}
                   onClick={() => deleteProduct(index)}
                 >
@@ -107,7 +112,7 @@ function CheckoutPage() {
         ) : (
           <h3 className="text-center">Não há produtos no carrinho</h3>
         )}
-
+      </div>
         <div className="float-right">
           <h3>
             Total:
@@ -117,27 +122,25 @@ function CheckoutPage() {
           </h3>
         </div>
 
-        <div className="address-content">
+        <div className="address-content row">
           <h3 className="checkout-title">Endereço</h3>
           <form method="POST" onSubmit={handleSubmit} className="address-form">
-            <div className="form-group">
-              <label htmlFor="name">
-                Rua
-                <input
-                  data-testid="checkout-street-input"
-                  className="form-control"
-                  type="text"
-                  name="rua"
-                  id="rua"
-                  onChange={(e) => setRua(e.target.value)}
-                  value={rua}
-                  required
-                />
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">
-                Número da casa
+            <div className="row">
+              <div className="col-md-8">
+                <label htmlFor="name">Rua</label>
+                  <input
+                    data-testid="checkout-street-input"
+                    className="form-control"
+                    type="text"
+                    name="rua"
+                    id="rua"
+                    onChange={(e) => setRua(e.target.value)}
+                    value={rua}
+                    required
+                  />
+              </div>
+              <div className="col-md-3">
+                <label htmlFor="email">Número</label>
                 <input
                   data-testid="checkout-house-number-input"
                   className="form-control"
@@ -148,9 +151,9 @@ function CheckoutPage() {
                   value={numeroCasa}
                   required
                 />
-              </label>
+              </div>
             </div>
-            <div className="fixed-bottom cart-content">
+            <div id="checkoutFinalizeButton" className="d-flex align-items-center justify-content-center mt-5">
               <input
                 type="submit"
                 value="Finalizar Pedido"

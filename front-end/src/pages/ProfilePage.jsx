@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MenuTop from '../components/MenuTop';
+import Sidebar from '../components/Sidebar';
 import {
   getFromLocalStorage,
   saveToLocalStorage,
@@ -29,6 +30,7 @@ const ProfilePage = () => {
   return (
     <div>
       <MenuTop pageTitle="Meu perfil" datatest="top-title" />
+      <Sidebar />
       <div id="wrapper" className="main-page">
         <form>
           <fieldset aria-label="Disabled fieldset example">

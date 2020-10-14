@@ -4,6 +4,7 @@ import MenuTop from '../components/MenuTop';
 import { getAllClientOrders } from '../services/ordersService';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
 import ListOrdersCards from '../components/ListOrdersCards';
+import Sidebar from '../components/Sidebar';
 
 function ClientOrdersPage() {
   const [orders, setOrders] = useState(null);
@@ -25,6 +26,7 @@ function ClientOrdersPage() {
   return (
     <div>
       <MenuTop pageTitle="Meus Pedidos" />
+      <Sidebar />
       {orders && orders.length > lengthValidation ? (
         <ListOrdersCards orders={orders} />
       ) : (
