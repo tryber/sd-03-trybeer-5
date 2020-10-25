@@ -68,7 +68,7 @@ export default function Login() {
               className="form-label"
               name="password"
             >
-              Password:
+              Senha:
             </label>
             <input
               data-testid="password-input"

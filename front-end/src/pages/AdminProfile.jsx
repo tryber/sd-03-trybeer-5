@@ -20,7 +20,7 @@ function AdminProfile() {
         <form>
           <fieldset>
             <div className="mb-3">
-              <p className="form-label">Name:</p>
+              <p className="form-label">Nome:</p>
               <p data-testid="profile-name" className="form-control">
                 {loggedName}
               </p>

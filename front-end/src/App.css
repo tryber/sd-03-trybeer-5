@@ -166,16 +166,22 @@
 .cart-button {
   width: 25rem;
   margin: 20px 0;
+  color: white;
+  border-color: #8A3033;
+  background-color: #8A3033;
+}
+
+.cart-button:hover {
+  color: white;
 }
 
 /* Checkout Page */
 
 .address-content {
-  margin: 4rem 0 8rem;
+  margin: 4rem 0;
 }
 
-.checkout-card {
-  align-items: flex-start;
+.checkout-item {
   display: flex;
   flex-direction: row;
   margin: 20px 0;
@@ -199,6 +205,10 @@
   flex-wrap: wrap;
 }
 
+.price {
+  margin: 20px 0 0;
+}
+
 /* Client Profile Page */
 
 .message {
@@ -214,7 +224,7 @@
 .admin-sidebar {
   background-color: #343a40!important;
   color: #212529;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2vh;
 }
 
@@ -240,12 +250,52 @@
   border-color: #8A3033;
   background-color: #8A3033;
 }
+
+.btn-custom:hover {
+  color: white;
+}
+
+/* Order Details Page */
+
+.order-details-page {
+  align-items: center;
+  flex-direction: column;
+  margin-top: 6rem;
+}
+
+.admin-order-details-page {
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.delivery-button {
+  width: 25rem;
+  margin: 20px 0;
+  color: white;
+  border-color: #8A3033;
+  background-color: #8A3033;
+  margin: 1rem auto;
+}
+
+.delivery-button: {
+  color: white;
+}
+
 /* All Pages */
 
 .main-page {
   margin: 6vh 12vh 0;
   padding: 2vh;
   justify-content: center;
+}
+
+.message-geral {
+  margin-top: 4rem;
+}
+
+.message-order {
+  margin-top: 6rem;
 }
 
 /* Side Menu Top*/

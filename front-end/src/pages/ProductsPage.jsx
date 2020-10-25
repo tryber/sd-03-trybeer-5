@@ -66,7 +66,7 @@ function ProductsPage() {
               />
             </div>
           ) : (
-            <h1 className="text-center">
+            <h1 className="text-center message-geral">
               {products && products.length === 0
                 ? 'Nenhum produto disponível'
                 : 'Loading...'}

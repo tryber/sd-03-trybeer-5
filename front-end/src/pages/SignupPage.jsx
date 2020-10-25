@@ -112,7 +112,7 @@ function SignupPage() {
           </div>
           <div className="form-group">
             <label htmlFor="password">
-              Password
+              Senha
               <input
                 data-testid="signup-password"
                 className="form-control"

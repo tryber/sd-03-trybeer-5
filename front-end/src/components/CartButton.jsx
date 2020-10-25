@@ -7,7 +7,7 @@ function CartButton({ totalPrice }) {
       <a href="/checkout">
         <button
           type="button"
-          className="btn btn-primary cart-button"
+          className="btn cart-button"
           data-testid="checkout-bottom-btn"
           disabled={totalPrice === '0,00'}
         >

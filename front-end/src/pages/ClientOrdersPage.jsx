@@ -26,16 +26,20 @@ function ClientOrdersPage() {
   return (
     <div>
       <MenuTop pageTitle="Meus Pedidos" />
-      <Sidebar />
-      {orders && orders.length > lengthValidation ? (
-        <ListOrdersCards orders={orders} />
-      ) : (
-        <h1 className="text-center">
-          {orders && orders.length === 0
-            ? 'Nenhum pedido registrado'
-            : 'Loading...'}
-        </h1>
-      )}
+      <div className="container-fluid">
+        <div className="row">
+          <Sidebar />
+          {orders && orders.length > lengthValidation ? (
+            <ListOrdersCards orders={orders} />
+          ) : (
+            <h1 className="text-center message-order">
+              {orders && orders.length === 0
+                ? 'Nenhum pedido registrado'
+                : 'Loading...'}
+            </h1>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ const ProfilePage = () => {
         <form>
           <fieldset aria-label="Disabled fieldset example">
             <div className="mb-3">
-              <label className="form-label">Name:</label>
+              <label className="form-label">Nome:</label>
               <input
                 data-testid="profile-name-input"
                 type="text"
@@ -61,7 +61,7 @@ const ProfilePage = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-custom"
               onClick={(e) => handleSubmit(e)}
               data-testid="profile-save-btn"
               disabled={!values.name}
