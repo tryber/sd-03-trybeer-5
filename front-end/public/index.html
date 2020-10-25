@@ -25,10 +25,14 @@
       const menuToggle = document.getElementById('menuTopToggle');
       if (menuToggle) {
         menuToggle.addEventListener('click', () => {
-          const cartButton = document.getElementById('cartButton');
           const wrapper = document.getElementById('wrapper');
-          wrapper.classList.toggle('toggled');
-          cartButton.classList.toggle('cart-toggled');
+          const cartButton = document.getElementById('cartButton');
+          if (cartButton) {
+            cartButton.classList.toggle('cart-toggled');
+          }
+          if (wrapper) {
+            wrapper.classList.toggle('toggled');
+          }
         });
       }
     }

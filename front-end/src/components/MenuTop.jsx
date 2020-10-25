@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function MenuTop({ pageTitle, dataTest }) {
+function MenuTop({ pageTitle }) {
   return (
     <div className="MenuTop">
       <header className="navbar navbar-dark fixed-top" style={{background: "#D17A22"}}>
@@ -30,10 +30,8 @@ export default MenuTop;
 
 MenuTop.propTypes = {
   pageTitle: PropTypes.string,
-  dataTest: PropTypes.string,
 };
 
 MenuTop.defaultProps = {
-  pageTitle: 'FIVE',
-  dataTest: '',
+  pageTitle: 'TryBeer',
 };
