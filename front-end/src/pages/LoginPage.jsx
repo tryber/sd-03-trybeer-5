@@ -84,7 +84,7 @@ export default function Login() {
               <button
                 data-testid="signin-btn"
                 type="submit"
-                className="btn btn-primary"
+                className="btn form-button"
                 disabled={!isValid}
                 onClick={(event) => handleSignInSubmit(event)}
               >
@@ -96,7 +96,7 @@ export default function Login() {
                 onClick={(event) => handleNoAccountSubmit(event)}
                 type="submit"
                 data-testid="no-account-btn"
-                className="btn btn-primary"
+                className="btn form-button"
               >
                 Ainda não tenho conta
               </button>

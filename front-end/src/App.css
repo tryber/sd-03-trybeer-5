@@ -17,7 +17,7 @@
 }
 
 #cartButton.cart-toggled {
-  margin-left: 250px!important;
+  margin-left: 250px !important;
 }
 
 #sidebar-wrapper {
@@ -28,7 +28,7 @@
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #D17A22;
+  background: #d17a22;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -167,8 +167,8 @@
   width: 25rem;
   margin: 20px 0;
   color: white;
-  border-color: #8A3033;
-  background-color: #8A3033;
+  border-color: #8a3033;
+  background-color: #8a3033;
 }
 
 .cart-button:hover {
@@ -196,7 +196,7 @@
 }
 
 #checkoutFinalizeButton {
-  z-index: 50!important;
+  z-index: 50 !important;
 }
 
 .checkoutOrdersList {
@@ -222,7 +222,7 @@
 }
 
 .admin-sidebar {
-  background-color: #343a40!important;
+  background-color: #343a40 !important;
   color: #212529;
   min-height: 100vh;
   padding: 2vh;
@@ -247,8 +247,8 @@
 
 .btn-custom {
   color: white;
-  border-color: #8A3033;
-  background-color: #8A3033;
+  border-color: #8a3033;
+  background-color: #8a3033;
 }
 
 .btn-custom:hover {
@@ -273,12 +273,12 @@
   width: 25rem;
   margin: 20px 0;
   color: white;
-  border-color: #8A3033;
-  background-color: #8A3033;
+  border-color: #8a3033;
+  background-color: #8a3033;
   margin: 1rem auto;
 }
 
-.delivery-button: {
+.delivery-button {
   color: white;
 }
 
@@ -302,4 +302,17 @@
 
 .side-menutop {
   height: 100vh;
+}
+
+/* Forms */
+
+.form-button {
+  margin: 20px 0;
+  color: white;
+  border-color: #8a3033;
+  background-color: #8a3033;
+}
+
+.form-button:hover {
+  color: white;
 }
