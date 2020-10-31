@@ -4,6 +4,7 @@ import MenuTop from '../components/MenuTop';
 import { getAllClientOrders } from '../services/ordersService';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
 import ListOrdersCards from '../components/ListOrdersCards';
+import Sidebar from '../components/Sidebar';
 
 function ClientOrdersPage() {
   const [orders, setOrders] = useState(null);
@@ -25,15 +26,20 @@ function ClientOrdersPage() {
   return (
     <div>
       <MenuTop pageTitle="Meus Pedidos" />
-      {orders && orders.length > lengthValidation ? (
-        <ListOrdersCards orders={orders} />
-      ) : (
-        <h1 className="text-center">
-          {orders && orders.length === 0
-            ? 'Nenhum pedido registrado'
-            : 'Loading...'}
-        </h1>
-      )}
+      <div className="container-fluid">
+        <div className="row">
+          <Sidebar />
+          {orders && orders.length > lengthValidation ? (
+            <ListOrdersCards orders={orders} />
+          ) : (
+            <h1 className="text-center message-order">
+              {orders && orders.length === 0
+                ? 'Nenhum pedido registrado'
+                : 'Loading...'}
+            </h1>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

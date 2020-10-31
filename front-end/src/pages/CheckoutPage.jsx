@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MenuTop from '../components/MenuTop';
 import checkOut from '../services/checkoutService';
+import Sidebar from '../components/Sidebar.jsx';
 
 function CheckoutPage() {
   const [orderTotalValue, setOrderTotalValue] = useState('0,00');
@@ -58,57 +59,70 @@ function CheckoutPage() {
   }
 
   return (
-    <div className="CheckoutPage">
+    <div>
       <MenuTop pageTitle="Finalizar Pedido" />
-      <div className="container">
-        <h3 className="checkout-title">Produtos</h3>
-        {storageCart.length > 0 ? (
-          storageCart.map((el, index) => (
-            <div className="card checkout-card" key={el.id}>
-              <div className="card-body" id={`product-${index}`} key={index}>
-                <h4
-                  className="name card-title"
-                  data-testid={`${index}-product-name`}
+      <Sidebar />
+      <div id="wrapper" className="container">
+        <h3 className="checkout-title" style={{ marginTop: '6rem' }}>
+          Produtos
+        </h3>
+        <div className="card">
+          {storageCart.length > 0 ? (
+            storageCart.map((el, index) => (
+              <div className="list-group list-group-flush" key={el.id}>
+                <div
+                  className="list-group-item"
+                  id={`product-${index}`}
+                  key={index}
                 >
-                  {el.name}
-                </h4>
-                <p
-                  className="amount card-text"
-                  data-testid={`${index}-product-qtd-input`}
-                >
-                  Quantidade: {el.amount}
-                </p>
-                <p
-                  className="total-product-price card-text"
-                  data-testid={`${index}-product-total-value`}
-                >
-                  Total: R${' '}
-                  {(el.price * el.amount)
-                    .toFixed(2)
-                    .toString()
-                    .replace('.', ',')}
-                  <span
-                    className="unit-price card-text"
-                    data-testid={`${index}-product-unit-price`}
+                  <h4
+                    className="name card-title"
+                    data-testid={`${index}-product-name`}
                   >
-                    {` (R$ ${el.price.toFixed(2).toString().replace('.', ',')} un)`}
-                  </span>
-                </p>
-                <button
-                  className="btn btn-primary"
-                  data-testid={`${index}-removal-button`}
-                  onClick={() => deleteProduct(index)}
-                >
-                  X
-                </button>
+                    {el.name}
+                  </h4>
+                  <p
+                    className="amount card-text"
+                    data-testid={`${index}-product-qtd-input`}
+                  >
+                    Quantidade: {el.amount}
+                  </p>
+                  <p
+                    className="total-product-price card-text"
+                    data-testid={`${index}-product-total-value`}
+                  >
+                    Total: R${' '}
+                    {(el.price * el.amount)
+                      .toFixed(2)
+                      .toString()
+                      .replace('.', ',')}
+                    <span
+                      className="unit-price card-text"
+                      data-testid={`${index}-product-unit-price`}
+                    >
+                      {` (R$ ${el.price
+                        .toFixed(2)
+                        .toString()
+                        .replace('.', ',')} un)`}
+                    </span>
+                  </p>
+                  <div>
+                    <button
+                      className="btn btn-custom"
+                      data-testid={`${index}-removal-button`}
+                      onClick={() => deleteProduct(index)}
+                    >
+                      X
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <h3 className="text-center">Não há produtos no carrinho</h3>
-        )}
-
-        <div className="float-right">
+            ))
+          ) : (
+            <h3 className="text-center">Não há produtos no carrinho</h3>
+          )}
+        </div>
+        <div className="float-right price">
           <h3>
             Total:
             <span className="checkout-text" data-testid="order-total-value">
@@ -117,12 +131,12 @@ function CheckoutPage() {
           </h3>
         </div>
 
-        <div className="address-content">
+        <div className="address-content row">
           <h3 className="checkout-title">Endereço</h3>
           <form method="POST" onSubmit={handleSubmit} className="address-form">
-            <div className="form-group">
-              <label htmlFor="name">
-                Rua
+            <div className="row">
+              <div className="col-md-8">
+                <label htmlFor="name">Rua</label>
                 <input
                   data-testid="checkout-street-input"
                   className="form-control"
@@ -133,11 +147,9 @@ function CheckoutPage() {
                   value={rua}
                   required
                 />
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">
-                Número da casa
+              </div>
+              <div className="col-md-3">
+                <label htmlFor="email">Número</label>
                 <input
                   data-testid="checkout-house-number-input"
                   className="form-control"
@@ -148,15 +160,18 @@ function CheckoutPage() {
                   value={numeroCasa}
                   required
                 />
-              </label>
+              </div>
             </div>
-            <div className="fixed-bottom cart-content">
+            <div
+              id="checkoutFinalizeButton"
+              className="d-flex align-items-center justify-content-center mt-5"
+            >
               <input
                 type="submit"
                 value="Finalizar Pedido"
                 disabled={!ableToSubmit}
                 data-testid="checkout-finish-btn"
-                className="btn btn-lg btn-primary cart-button"
+                className="btn btn-lg cart-button"
               />
             </div>
           </form>

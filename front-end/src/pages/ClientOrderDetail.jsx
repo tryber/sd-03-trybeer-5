@@ -5,6 +5,7 @@ import { getOneOrder } from '../services/ordersService';
 import formatDate from '../utils/formatDate';
 import formatPrice from '../utils/formatPrice';
 import { getFromLocalStorage } from '../utils/saveToLocalStorage';
+import Sidebar from '../components/Sidebar.jsx';
 
 function ClientOrderDetail({ match }) {
   const [order, setOrder] = useState(null);
@@ -25,9 +26,10 @@ function ClientOrderDetail({ match }) {
   return (
     <div>
       <MenuTop pageTitle="Detalhes de Pedido" />
-      <div className="container">
+      <Sidebar />
+      <div id="wrapper" className="order-details-page container">
         {order && order.products ? (
-          <div className="card checkout-card">
+          <div className="card">
             <div className="card-header">
               <h3
                 className="card-text"
@@ -68,7 +70,7 @@ function ClientOrderDetail({ match }) {
             </div>
           </div>
         ) : (
-          <h1 className="text-center">{order ? 'O pedido não foi encontrado' : 'Loading...'}</h1>
+          <h1 className="text-center message-geral">{order ? 'O pedido não foi encontrado' : 'Loading...'}</h1>
         )}
       </div>
     </div>

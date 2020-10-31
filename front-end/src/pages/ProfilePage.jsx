@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MenuTop from '../components/MenuTop';
+import Sidebar from '../components/Sidebar';
 import {
   getFromLocalStorage,
   saveToLocalStorage,
@@ -29,11 +30,12 @@ const ProfilePage = () => {
   return (
     <div>
       <MenuTop pageTitle="Meu perfil" datatest="top-title" />
-      <div className="main-page">
+      <Sidebar />
+      <div id="wrapper" className="main-page">
         <form>
           <fieldset aria-label="Disabled fieldset example">
             <div className="mb-3">
-              <label className="form-label">Name:</label>
+              <label className="form-label">Nome:</label>
               <input
                 data-testid="profile-name-input"
                 type="text"
@@ -59,7 +61,7 @@ const ProfilePage = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
+              className="btn btn-custom"
               onClick={(e) => handleSubmit(e)}
               data-testid="profile-save-btn"
               disabled={!values.name}

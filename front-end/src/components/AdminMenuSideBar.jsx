@@ -2,9 +2,9 @@ import React from 'react';
 
 function AdminMenuSideBar() {
   return (
-    <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav className="col-md-2 d-none d-md-block bg-light sidebar admin-sidebar">
       <div className="sidebar-sticky">
-        <ul className="nav flex-column">
+        <ul className="nav flex-column align-content-center">
           <h1>TryBeer</h1>
           <li className="nav-item">
             <a className="nav-link active" data-testid="side-menu-item-orders" href="/admin/orders">

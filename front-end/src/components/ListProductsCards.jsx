@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './ProductCard';
+import CartButton from '../components/CartButton';
 
-function ListProductsCards({ products, getTotalPrice }) {
+
+function ListProductsCards({ products, getTotalPrice, totalPrice }) {
   return (
     <div className="cards-list">
       {products.map((product, index) => (
@@ -13,6 +15,7 @@ function ListProductsCards({ products, getTotalPrice }) {
           getTotalPrice={getTotalPrice}
         />
       ))}
+      <CartButton totalPrice={totalPrice} />
     </div>
   );
 }

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 function CartButton({ totalPrice }) {
   return (
-    <div className="fixed-bottom cart-content">
+    <div id="cartButton" className="fixed-bottom cart-content" style={{background: "transparent"}}>
       <a href="/checkout">
         <button
           type="button"
-          className="btn btn-primary cart-button"
+          className="btn cart-button"
           data-testid="checkout-bottom-btn"
           disabled={totalPrice === '0,00'}
         >

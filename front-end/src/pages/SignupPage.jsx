@@ -145,7 +145,7 @@ function SignupPage() {
             value="Cadastrar"
             disabled={!ableToSubmit}
             data-testid="signup-btn"
-            className="btn btn-primary"
+            className="btn form-button"
           />
         </form>
       </div>

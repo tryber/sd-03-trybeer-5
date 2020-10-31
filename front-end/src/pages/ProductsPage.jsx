@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import MenuTop from '../components/MenuTop';
-import CartButton from '../components/CartButton';
 import ListProductsCards from '../components/ListProductsCards';
 import getAllProducts from '../services/productsService';
 import formatPrice from '../utils/formatPrice';
@@ -9,6 +8,7 @@ import {
   getCartFromLocalStorage,
   getFromLocalStorage,
 } from '../utils/saveToLocalStorage';
+import Sidebar from '../components/Sidebar.jsx';
 
 function ProductsPage() {
   const [products, setProducts] = useState(null);
@@ -53,22 +53,27 @@ function ProductsPage() {
   return (
     <div>
       <MenuTop />
-      <span className="center">{successMessage}</span>
-      {products && products.length > lengthValidation ? (
-        <div className="product-page">
-          <ListProductsCards
-            products={products}
-            getTotalPrice={getTotalPrice}
-          />
-          <CartButton totalPrice={totalPrice} />
+      <div className="container-fluid">
+        <div className="row">
+          <Sidebar />
+          <p className="text-center">{successMessage}</p>
+          {products && products.length > lengthValidation ? (
+            <div id="wrapper" className="product-page">
+              <ListProductsCards
+                products={products}
+                getTotalPrice={getTotalPrice}
+                totalPrice={totalPrice} 
+              />
+            </div>
+          ) : (
+            <h1 className="text-center message-geral">
+              {products && products.length === 0
+                ? 'Nenhum produto disponível'
+                : 'Loading...'}
+            </h1>
+          )}
         </div>
-      ) : (
-        <h1 className="text-center">
-          {products && products.length === 0
-            ? 'Nenhum produto disponível'
-            : 'Loading...'}
-        </h1>
-      )}
+      </div>
     </div>
   );
 }
